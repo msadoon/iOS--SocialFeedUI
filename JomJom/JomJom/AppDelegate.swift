@@ -12,11 +12,31 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var utilityInstance:Utilities?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let LoginVC:LoginViewController = LoginViewController.init(nibName:"LoginViewController", bundle:nil)
+        let navController:UINavigationController = UINavigationController(rootViewController: LoginVC)
+        self.window?.rootViewController = navController
+        self.window?.makeKeyAndVisible()
+        
+        utilityInstance = Utilities.utilitiesInstance
+        setupNavigationBarForApp()
+        setupStatusBar()
+        
         return true
+    }
+    
+    func setupNavigationBarForApp() {
+        var navigationbarAppearance = UINavigationBar.appearance()
+        navigationbarAppearance.barTintColor = utilityInstance?.getAppColor()
+        navigationbarAppearance.translucent = false
+    }
+    
+    func setupStatusBar() {
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
     }
 
     func applicationWillResignActive(application: UIApplication) {

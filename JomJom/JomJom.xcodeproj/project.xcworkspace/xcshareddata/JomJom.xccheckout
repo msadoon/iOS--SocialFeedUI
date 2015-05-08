@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A5AF8311-DB30-4438-8486-2F0349DE69E8</string>
+	<key>IDESourceControlProjectName</key>
+	<string>JomJom</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>268952F97A5C3EA606823BABC55C75AA293A67C8</key>
+		<string>gitlab.com:jomjomandroid/JomJom_ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>JomJom/JomJom.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>268952F97A5C3EA606823BABC55C75AA293A67C8</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>gitlab.com:jomjomandroid/JomJom_ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>268952F97A5C3EA606823BABC55C75AA293A67C8</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>268952F97A5C3EA606823BABC55C75AA293A67C8</string>
+			<key>IDESourceControlWCCName</key>
+			<string>JomJom_ios</string>
+		</dict>
+	</array>
+</dict>
+</plist>
