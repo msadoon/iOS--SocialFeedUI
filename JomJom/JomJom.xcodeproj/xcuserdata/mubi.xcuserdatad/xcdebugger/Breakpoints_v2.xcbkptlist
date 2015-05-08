@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JomJom.xcodeproj/AllPostsViewController.swift"
-            timestampString = "452736852.442118"
+            timestampString = "452746050.468917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "setupSegmentButtons()"
             landmarkType = "5">
          </BreakpointContent>

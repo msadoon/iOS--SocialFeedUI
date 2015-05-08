@@ -29,6 +29,10 @@ class AllPostsViewController: UIViewController {
     
     //MARK: UI Methods
     func configureNavigationBar() {
+        //get rid of shadow in navigationbar
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        
         //set this up for underline and segment buttonsr
         buttonWidth = CGFloat(utilityInstance.getScreenWidth()/3)
         
@@ -73,18 +77,26 @@ class AllPostsViewController: UIViewController {
     
     func setupSegmentButtons() {
         
-        var myPosts:UIButton = UIButton(frame: CGRectMake(0, 0, buttonWidth!, 20))
-        var popularPosts:UIButton = UIButton(frame:CGRectMake(buttonWidth!+myPosts.frame.origin.x, 0, buttonWidth!, 20))
-        var cityPosts:UIButton = UIButton(frame:CGRectMake(buttonWidth!+popularPosts.frame.origin.x, 0, buttonWidth!, 20))
+        var myPosts:UIButton = UIButton(frame: CGRectMake(0, 0, buttonWidth!, 25))
+        var popularPosts:UIButton = UIButton(frame:CGRectMake(buttonWidth!+myPosts.frame.origin.x, 0, buttonWidth!, 25))
+        var cityPosts:UIButton = UIButton(frame:CGRectMake(buttonWidth!+popularPosts.frame.origin.x, 0, buttonWidth!, 25))
         
         cityPosts.backgroundColor = UIColor(red: 94.0/255.0, green: 169.0/255.0, blue: 186.0/255.0, alpha: 1)
         popularPosts.backgroundColor = UIColor(red: 94.0/255.0, green: 169.0/255.0, blue: 186.0/255.0, alpha: 1)
         myPosts.backgroundColor = UIColor(red: 94.0/255.0, green: 169.0/255.0, blue: 186.0/255.0, alpha: 1)
         
-        myPosts.setTitle("My Posts", forState: UIControlState.Normal)
-        myPosts.titleLabel!.text = "Popular Posts"
-        myPosts.titleLabel!.text = "City Posts"
-        
+        var attributedTitle:NSAttributedString = NSAttributedString(string: "My Posts", attributes:
+            [NSFontAttributeName:UIFont(name: "Arial", size: 10.0)!,
+             NSForegroundColorAttributeName:UIColor.whiteColor()])
+        myPosts.setAttributedTitle(attributedTitle, forState: UIControlState.Normal)
+        attributedTitle = NSAttributedString(string: "Popular Posts", attributes:
+            [NSFontAttributeName:UIFont(name: "Arial", size: 10.0)!,
+                NSForegroundColorAttributeName:UIColor.whiteColor()])
+        popularPosts.setAttributedTitle(attributedTitle, forState: UIControlState.Normal)
+        attributedTitle = NSAttributedString(string: "City Posts", attributes:
+            [NSFontAttributeName:UIFont(name: "Arial", size: 10.0)!,
+                NSForegroundColorAttributeName:UIColor.whiteColor()])
+        cityPosts.setAttributedTitle(attributedTitle, forState: UIControlState.Normal)
         
         myPosts.addTarget(self, action: "myPosts", forControlEvents: UIControlEvents.TouchUpInside)
         popularPosts.addTarget(self, action: "popularPosts", forControlEvents: UIControlEvents.TouchUpInside)
@@ -96,8 +108,8 @@ class AllPostsViewController: UIViewController {
     }
     
     func setupUnderline() {
-        underline = UIView(frame:CGRectMake(0,15, buttonWidth!,5))
-        underline!.backgroundColor = UIColor.purpleColor()
+        underline = UIView(frame:CGRectMake(0,22, buttonWidth!,3))
+        underline!.backgroundColor = UIColor.whiteColor()
         self.view.addSubview(underline!)
     }
     
@@ -109,7 +121,7 @@ class AllPostsViewController: UIViewController {
         UIView.transitionWithView(self.underline!,
             duration: 0.3,
             options: UIViewAnimationOptions.CurveEaseInOut,
-            animations: {self.underline?.frame = CGRectMake(0, 15, buttonWidth!, 5)},
+            animations: {self.underline?.frame = CGRectMake(0, 22, buttonWidth!, 3)},
             completion: nil)
     }
     
@@ -119,7 +131,7 @@ class AllPostsViewController: UIViewController {
         UIView.transitionWithView(self.underline!,
             duration: 0.3,
             options: UIViewAnimationOptions.CurveEaseInOut,
-            animations: {self.underline?.frame = CGRectMake(buttonWidth!, 15, buttonWidth!, 5)},
+            animations: {self.underline?.frame = CGRectMake(buttonWidth!, 22, buttonWidth!, 3)},
             completion: nil)
     }
     
@@ -129,13 +141,12 @@ class AllPostsViewController: UIViewController {
         UIView.transitionWithView(self.underline!,
             duration: 0.3,
             options: UIViewAnimationOptions.CurveEaseInOut,
-            animations: {self.underline?.frame = CGRectMake(buttonWidth!*2, 15, buttonWidth!, 5)},
+            animations: {self.underline?.frame = CGRectMake(buttonWidth!*2, 22, buttonWidth!, 3)},
             completion: nil)
     }
     
     func goToGroupChat() {
         println("group chat")
-        println("width \(self.navigationItem.titleView?.frame)")
     }
     
     func goToWritePost() {
