@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E23667A1AFEBE2F006AEBC5 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2366781AFEBE2F006AEBC5 /* PostTableViewCell.swift */; };
+		8E23667E1AFEC89B006AEBC5 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E23667C1AFEC5C7006AEBC5 /* PostTableViewCell.xib */; };
 		8EA1CC6D1AF8F4F4001CA4AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA1CC6C1AF8F4F4001CA4AE /* AppDelegate.swift */; };
 		8EA1CC6F1AF8F4F4001CA4AE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA1CC6E1AF8F4F4001CA4AE /* LoginViewController.swift */; };
 		8EA1CC741AF8F4F4001CA4AE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EA1CC731AF8F4F4001CA4AE /* Images.xcassets */; };
@@ -28,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8E2366781AFEBE2F006AEBC5 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostTableViewCell.swift; path = ../JomJom/PostTableViewCell.swift; sourceTree = "<group>"; };
+		8E23667C1AFEC5C7006AEBC5 /* PostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 		8EA1CC671AF8F4F4001CA4AE /* JomJom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JomJom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EA1CC6B1AF8F4F4001CA4AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8EA1CC6C1AF8F4F4001CA4AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +143,8 @@
 			children = (
 				8EA1CC8F1AF9083B001CA4AE /* AllPostsViewController.swift */,
 				8EA1CC961AF92F1D001CA4AE /* AllPostsViewController.xib */,
+				8E2366781AFEBE2F006AEBC5 /* PostTableViewCell.swift */,
+				8E23667C1AFEC5C7006AEBC5 /* PostTableViewCell.xib */,
 			);
 			name = AllPosts;
 			sourceTree = "<group>";
@@ -234,6 +240,7 @@
 				8EA1CC741AF8F4F4001CA4AE /* Images.xcassets in Resources */,
 				8EA1CC921AF90FC8001CA4AE /* LoginViewController.xib in Resources */,
 				8EA1CC971AF92F1D001CA4AE /* AllPostsViewController.xib in Resources */,
+				8E23667E1AFEC89B006AEBC5 /* PostTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +260,7 @@
 			files = (
 				8EA1CC901AF9083B001CA4AE /* AllPostsViewController.swift in Sources */,
 				8EA1CC6F1AF8F4F4001CA4AE /* LoginViewController.swift in Sources */,
+				8E23667A1AFEBE2F006AEBC5 /* PostTableViewCell.swift in Sources */,
 				8EA1CC941AF91EF5001CA4AE /* Utilities.swift in Sources */,
 				8EA1CC6D1AF8F4F4001CA4AE /* AppDelegate.swift in Sources */,
 			);
@@ -313,7 +321,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -352,7 +360,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -368,6 +376,7 @@
 				INFOPLIST_FILE = JomJom/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -379,6 +388,7 @@
 				INFOPLIST_FILE = JomJom/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -435,6 +445,7 @@
 				8EA1CC881AF8F4F4001CA4AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8EA1CC891AF8F4F4001CA4AE /* Build configuration list for PBXNativeTarget "JomJomTests" */ = {
 			isa = XCConfigurationList;
@@ -443,6 +454,7 @@
 				8EA1CC8B1AF8F4F4001CA4AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

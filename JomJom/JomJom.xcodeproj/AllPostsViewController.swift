@@ -8,11 +8,13 @@
 
 import UIKit
 
-class AllPostsViewController: UIViewController {
+class AllPostsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     var utilityInstance:Utilities = Utilities.utilitiesInstance
     var buttonWidth:CGFloat?
     var underline:UIView?
+    var mainTable:UITableView?
+    var mainTableSource:[String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +22,9 @@ class AllPostsViewController: UIViewController {
         configureNavigationBar()
         setupSegmentButtons()
         setupUnderline()
+        bottomNavBar()
+        setupTableView()
+        setupTableDatasource()
     }
     
     override func didReceiveMemoryWarning() {
@@ -46,7 +51,6 @@ class AllPostsViewController: UIViewController {
         groupChatButton.setBackgroundImage(UIImage(named: "1.0wechat"), forState: UIControlState.Highlighted)
         var newBarItemBackButton:UIBarButtonItem = UIBarButtonItem(customView: groupChatButton)
         self.navigationItem.leftBarButtonItem = newBarItemBackButton
-        
         //right navigation bar button item
         var writePostButton:UIButton = UIButton(frame: CGRectMake(0, 0, 30.0, 30.0))
         writePostButton.addTarget(self, action: "goToWritePost", forControlEvents: UIControlEvents.TouchUpInside)
@@ -113,6 +117,84 @@ class AllPostsViewController: UIViewController {
         self.view.addSubview(underline!)
     }
     
+    func setupTableView() {
+        var navbarHeight = self.navigationController?.navigationBar.bounds.height as CGFloat!
+        mainTable = UITableView(frame: CGRectMake(CGFloat(0), CGFloat(25), CGFloat(utilityInstance.getScreenWidth()), CGFloat(utilityInstance.getScreenHeight())-(navbarHeight+25+44+20)))//20 pixels I cannot account for
+        mainTable!.delegate = self
+        mainTable!.dataSource = self
+
+        var nib = UINib(nibName: "PostTableViewCell", bundle: nil)
+        mainTable!.registerNib(nib, forCellReuseIdentifier: "postCell")
+        mainTable!.backgroundColor = utilityInstance.UIColorFromRGB(0xF0F7F2)
+        mainTable!.separatorColor = UIColor.clearColor()
+        mainTable!.separatorInset = UIEdgeInsetsZero
+        self.view.addSubview(mainTable!)
+    }
+    
+    func setupTableDatasource() {
+        mainTableSource = ["Post 1", "Post 2", "Post 3", "Post 4", "Post 5", "Post 6", "Post 7", "Post 8", "Post 9", "Post 10"]
+    }
+    
+    func bottomNavBar() {
+        var navbarHeight = self.navigationController?.navigationBar.bounds.height as CGFloat!
+        var bottomNav:UIView = UIView(frame: CGRectMake(0, CGFloat(utilityInstance.getScreenHeight())-(navbarHeight+CGFloat(25)+39), CGFloat(utilityInstance.getScreenWidth()), 44)) //5 pixels I cannot account for
+        bottomNav.backgroundColor = utilityInstance.getAppColor()
+        self.view.addSubview(bottomNav)
+        
+        //left navigation button -- My Message
+        var myMessageButton:UIButton = UIButton(frame: CGRectMake(12, 5, 33.0, 33.0))
+        myMessageButton.addTarget(self, action: "goToMyMessage", forControlEvents: UIControlEvents.TouchUpInside)
+        myMessageButton.setBackgroundImage(UIImage(named: "1.0my_message"), forState: UIControlState.Normal)
+        myMessageButton.setBackgroundImage(UIImage(named: "1.0my_message"), forState: UIControlState.Selected)
+        myMessageButton.setBackgroundImage(UIImage(named: "1.0my_message"), forState: UIControlState.Highlighted)
+        bottomNav.addSubview(myMessageButton)
+        
+        //right navigation button
+        var mySettingsButton:UIButton = UIButton(frame: CGRectMake(CGFloat(utilityInstance.getScreenWidth()-12-33.0), 5, 33.0, 33.0))
+        mySettingsButton.addTarget(self, action: "goToMySettings", forControlEvents: UIControlEvents.TouchUpInside)
+        mySettingsButton.setBackgroundImage(UIImage(named: "1.0settings"), forState: UIControlState.Normal)
+        mySettingsButton.setBackgroundImage(UIImage(named: "1.0settings"), forState: UIControlState.Selected)
+        mySettingsButton.setBackgroundImage(UIImage(named: "1.0settings"), forState: UIControlState.Highlighted)
+        bottomNav.addSubview(mySettingsButton)
+
+        //center navigation button
+        //custom titleview
+        var personalChatButton:UIButton = UIButton(frame: CGRectMake(CGFloat((utilityInstance.getScreenWidth()/2)-100), 5, 200, 34))
+        personalChatButton.setTitle("1 on 1 chat", forState: UIControlState.Normal)
+        personalChatButton.addTarget(self, action: "goToPersonalChat", forControlEvents: UIControlEvents.TouchUpInside)
+        bottomNav.addSubview(personalChatButton)
+    }
+    
+    //UITableViewDelegate
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        var newCell:PostTableViewCell = mainTable?.dequeueReusableCellWithIdentifier("postCell") as! PostTableViewCell
+        newCell.contentView.backgroundColor = utilityInstance.UIColorFromRGB(0xF0F7F2)
+        newCell.backgroundColor = utilityInstance.UIColorFromRGB(0xF0F7F2)
+        //configure drop shadow
+        newCell.contentView.layer.cornerRadius = 2.0
+        newCell.contentView.layer.borderWidth = 1.0
+        newCell.contentView.layer.borderColor = UIColor.clearColor().CGColor
+        newCell.contentView.layer.masksToBounds = true
+//        newCell.layer.shadowColor = UIColor.blackColor().CGColor
+//        newCell.layer.shadowOffset = CGSizeMake(0, 2.0)
+//        newCell.layer.shadowRadius = 2.0
+//        newCell.layer.shadowOpacity = 1.0
+//        newCell.layer.masksToBounds = false
+//        newCell.layer.shadowPath = UIBezierPath(roundedRect: newCell.bounds, cornerRadius: newCell.contentView.layer.cornerRadius).CGPath
+        
+        return newCell
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return mainTableSource.count
+    }
+
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 200
+    }
+    
     //MARK: IBActions or target actions
     
     func myPosts() {
@@ -151,5 +233,17 @@ class AllPostsViewController: UIViewController {
     
     func goToWritePost() {
         println("write post")
+    }
+    
+    func goToPersonalChat() {
+        println("personal chat")
+    }
+    
+    func goToMySettings() {
+        println("settings")
+    }
+    
+    func goToMyMessage() {
+        println("my message")
     }
 }
