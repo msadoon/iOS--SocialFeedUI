@@ -14,7 +14,7 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     var buttonWidth:CGFloat?
     var underline:UIView?
     var mainTable:UITableView?
-    var mainTableSource:[String] = []
+    var mainTableSource:[Post] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +23,8 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         setupSegmentButtons()
         setupUnderline()
         bottomNavBar()
-        setupTableView()
         setupTableDatasource()
+        setupTableView()
     }
     
     override func didReceiveMemoryWarning() {
@@ -132,7 +132,24 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func setupTableDatasource() {
-        mainTableSource = ["Post 1", "Post 2", "Post 3", "Post 4", "Post 5", "Post 6", "Post 7", "Post 8", "Post 9", "Post 10"]
+        
+        var SamplePost1:Post = Post(ID:1, numLikes:2, numComments:9, postContent:"Post 1", liked:true)
+        var SamplePost2:Post = Post(ID:2, numLikes:4, numComments:8, postContent:"Post 2", liked:false)
+        var SamplePost3:Post = Post(ID:3, numLikes:1, numComments:4, postContent:"Post 3", liked:false)
+        var SamplePost4:Post = Post(ID:4, numLikes:2, numComments:7, postContent:"Post 4", liked:true)
+        var SamplePost5:Post = Post(ID:5, numLikes:5, numComments:3, postContent:"Post 5", liked:true)
+        var SamplePost6:Post = Post(ID:6, numLikes:74, numComments:0, postContent:"Post 6",
+            liked:false)
+        var SamplePost7:Post = Post(ID:7, numLikes:1, numComments:29, postContent:"Post 7",
+            liked:false)
+        var SamplePost8:Post = Post(ID:8, numLikes:0, numComments:12, postContent:"Post 8",
+            liked:true)
+        var SamplePost9:Post = Post(ID:9, numLikes:25, numComments:34, postContent:"Post 9",
+            liked:false)
+        var SamplePost10:Post = Post(ID:10, numLikes:8, numComments:1, postContent:"Post 10",
+            liked:true)
+        
+        mainTableSource = [SamplePost1, SamplePost2, SamplePost3, SamplePost4, SamplePost5,SamplePost6, SamplePost7, SamplePost8, SamplePost9, SamplePost10]
     }
     
     func bottomNavBar() {
@@ -169,19 +186,18 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var newCell:PostTableViewCell = mainTable?.dequeueReusableCellWithIdentifier("postCell") as! PostTableViewCell
+        // configure drop shadow
+        
         newCell.contentView.backgroundColor = utilityInstance.UIColorFromRGB(0xF0F7F2)
         newCell.backgroundColor = utilityInstance.UIColorFromRGB(0xF0F7F2)
-        //configure drop shadow
-        newCell.contentView.layer.cornerRadius = 2.0
-        newCell.contentView.layer.borderWidth = 1.0
-        newCell.contentView.layer.borderColor = UIColor.clearColor().CGColor
-        newCell.contentView.layer.masksToBounds = true
-//        newCell.layer.shadowColor = UIColor.blackColor().CGColor
-//        newCell.layer.shadowOffset = CGSizeMake(0, 2.0)
-//        newCell.layer.shadowRadius = 2.0
-//        newCell.layer.shadowOpacity = 1.0
-//        newCell.layer.masksToBounds = false
-//        newCell.layer.shadowPath = UIBezierPath(roundedRect: newCell.bounds, cornerRadius: newCell.contentView.layer.cornerRadius).CGPath
+        newCell.loadPost(mainTableSource[indexPath.row])
+        newCell.cellView.layer.bounds = CGRectMake(0, 0, 320*0.9375, 200*0.933335)
+        
+        newCell.cellView.layer.shadowPath = UIBezierPath(rect: newCell.cellView.layer.bounds).CGPath
+        newCell.cellView.layer.shadowOffset = CGSizeMake(2, 2)
+        newCell.cellView.layer.shadowColor = UIColor.blackColor().CGColor
+        newCell.cellView.layer.shadowRadius = 3
+        newCell.cellView.layer.shadowOpacity = 0.30
         
         return newCell
     }
@@ -189,9 +205,9 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mainTableSource.count
     }
-
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
         return 200
     }
     
