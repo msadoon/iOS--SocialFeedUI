@@ -8,11 +8,13 @@
 
 import UIKit
 
-class AllPostsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class AllPostsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate{
     
     var utilityInstance:Utilities = Utilities.utilitiesInstance
     var buttonWidth:CGFloat?
     var underline:UIView?
+    var bottomNav:UIView?
+    var topTabBar:UIView?
     var mainTable:UITableView?
     var mainTableSource:[Post] = []
     
@@ -25,6 +27,7 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         bottomNavBar()
         setupTableDatasource()
         setupTableView()
+        setupRefreshControl()
     }
     
     override func didReceiveMemoryWarning() {
@@ -79,7 +82,18 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         self.navigationItem.titleView = updatingChatTitleButton
     }
     
+    func setupRefreshControl() {
+        var refreshControl:UIRefreshControl = UIRefreshControl()
+        refreshControl.backgroundColor = UIColor.clearColor()
+        refreshControl.tintColor = utilityInstance.UIColorFromRGB(0xC0F1E9)
+        refreshControl.addTarget(self, action: nil, forControlEvents: UIControlEvents.ValueChanged)
+        mainTable?.addSubview(refreshControl)
+        
+    }
+    
     func setupSegmentButtons() {
+        
+        topTabBar = UIView(frame: CGRectMake(0, 0, CGFloat(utilityInstance.getScreenWidth()), 25))
         
         var myPosts:UIButton = UIButton(frame: CGRectMake(0, 0, buttonWidth!, 25))
         var popularPosts:UIButton = UIButton(frame:CGRectMake(buttonWidth!+myPosts.frame.origin.x, 0, buttonWidth!, 25))
@@ -106,9 +120,10 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         popularPosts.addTarget(self, action: "popularPosts", forControlEvents: UIControlEvents.TouchUpInside)
         cityPosts.addTarget(self, action: "cityPosts", forControlEvents: UIControlEvents.TouchUpInside)
         
-        self.view.addSubview(myPosts)
-        self.view.addSubview(popularPosts)
-        self.view.addSubview(cityPosts)
+        self.topTabBar?.addSubview(myPosts)
+        self.topTabBar?.addSubview(popularPosts)
+        self.topTabBar?.addSubview(cityPosts)
+        self.view.addSubview(topTabBar!)
     }
     
     func setupUnderline() {
@@ -154,9 +169,9 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func bottomNavBar() {
         var navbarHeight = self.navigationController?.navigationBar.bounds.height as CGFloat!
-        var bottomNav:UIView = UIView(frame: CGRectMake(0, CGFloat(utilityInstance.getScreenHeight())-(navbarHeight+CGFloat(25)+39), CGFloat(utilityInstance.getScreenWidth()), 44)) //5 pixels I cannot account for
-        bottomNav.backgroundColor = utilityInstance.getAppColor()
-        self.view.addSubview(bottomNav)
+        bottomNav = UIView(frame: CGRectMake(0, CGFloat(utilityInstance.getScreenHeight())-(navbarHeight+CGFloat(25)+39), CGFloat(utilityInstance.getScreenWidth()), 44)) //5 pixels I cannot account for
+        bottomNav!.backgroundColor = utilityInstance.getAppColor()
+        self.view.addSubview(bottomNav!)
         
         //left navigation button -- My Message
         var myMessageButton:UIButton = UIButton(frame: CGRectMake(12, 5, 33.0, 33.0))
@@ -164,7 +179,7 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         myMessageButton.setBackgroundImage(UIImage(named: "1.0my_message"), forState: UIControlState.Normal)
         myMessageButton.setBackgroundImage(UIImage(named: "1.0my_message"), forState: UIControlState.Selected)
         myMessageButton.setBackgroundImage(UIImage(named: "1.0my_message"), forState: UIControlState.Highlighted)
-        bottomNav.addSubview(myMessageButton)
+        bottomNav!.addSubview(myMessageButton)
         
         //right navigation button
         var mySettingsButton:UIButton = UIButton(frame: CGRectMake(CGFloat(utilityInstance.getScreenWidth()-12-33.0), 5, 33.0, 33.0))
@@ -172,14 +187,14 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         mySettingsButton.setBackgroundImage(UIImage(named: "1.0settings"), forState: UIControlState.Normal)
         mySettingsButton.setBackgroundImage(UIImage(named: "1.0settings"), forState: UIControlState.Selected)
         mySettingsButton.setBackgroundImage(UIImage(named: "1.0settings"), forState: UIControlState.Highlighted)
-        bottomNav.addSubview(mySettingsButton)
+        bottomNav!.addSubview(mySettingsButton)
 
         //center navigation button
         //custom titleview
         var personalChatButton:UIButton = UIButton(frame: CGRectMake(CGFloat((utilityInstance.getScreenWidth()/2)-100), 5, 200, 34))
         personalChatButton.setTitle("1 on 1 chat", forState: UIControlState.Normal)
         personalChatButton.addTarget(self, action: "goToPersonalChat", forControlEvents: UIControlEvents.TouchUpInside)
-        bottomNav.addSubview(personalChatButton)
+        bottomNav!.addSubview(personalChatButton)
     }
     
     //UITableViewDelegate
@@ -210,6 +225,33 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         
         return 200
     }
+    
+    //UIScrollViewDelegate
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+//        if (scrollView.contentOffset.y <= 0) {
+//            //animate
+//            UIView.transitionWithView(self.bottomNav!,
+//                duration: 0.5,
+//                options: UIViewAnimationOptions.CurveEaseOut,
+//                animations: {
+//                    self.bottomNav?.frame = CGRectMake(0, self.bottomNav!.frame.origin.y-self.bottomNav!.frame.height-CGFloat(25)-39, self.bottomNav!.frame.width, self.bottomNav!.frame.height)
+//                    self.topTabBar?.frame = CGRectMake(self.topTabBar!.frame.origin.x, 0, self.topTabBar!.frame.width, self.topTabBar!.frame.height)
+//                    self.mainTable?.frame = CGRectMake(self.mainTable!.frame.origin.x, self.mainTable!.frame.origin.y, self.mainTable!.frame.width, CGFloat(self.utilityInstance.getScreenHeight())-self.bottomNav!.frame.height)
+//                },
+//                completion: nil)
+//        } else if (scrollView.contentOffset.y > 0) {
+//            UIView.transitionWithView(self.bottomNav!,
+//                duration: 0.5,
+//                options: UIViewAnimationOptions.CurveEaseOut,
+//                animations: {
+//                    self.bottomNav?.frame = CGRectMake(0, self.bottomNav!.frame.origin.y+self.bottomNav!.frame.height+CGFloat(25)+39, self.bottomNav!.frame.width, self.bottomNav!.frame.height)
+//                    self.topTabBar?.frame = CGRectMake(self.topTabBar!.frame.origin.x, -25, self.topTabBar!.frame.width, self.topTabBar!.frame.height)
+//                    self.mainTable?.frame = CGRectMake(self.mainTable!.frame.origin.x, self.mainTable!.frame.origin.y, self.mainTable!.frame.width, CGFloat(self.utilityInstance.getScreenHeight()))
+//                },
+//                completion: nil)
+//        }
+    }
+    
     
     //MARK: IBActions or target actions
     
