@@ -133,21 +133,21 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func setupTableDatasource() {
         
-        var SamplePost1:Post = Post(ID:1, numLikes:2, numComments:9, postContent:"Post 1", liked:true)
-        var SamplePost2:Post = Post(ID:2, numLikes:4, numComments:8, postContent:"Post 2", liked:false)
-        var SamplePost3:Post = Post(ID:3, numLikes:1, numComments:4, postContent:"Post 3", liked:false)
-        var SamplePost4:Post = Post(ID:4, numLikes:2, numComments:7, postContent:"Post 4", liked:true)
-        var SamplePost5:Post = Post(ID:5, numLikes:5, numComments:3, postContent:"Post 5", liked:true)
+        var SamplePost1:Post = Post(ID:1, numLikes:2, numComments:9, postContent:"Post Post Post Post Post Post Post Post Post Post", liked:true, color: ColorType.Teal)
+        var SamplePost2:Post = Post(ID:2, numLikes:4, numComments:8, postContent:"Post 2", liked:false, color: ColorType.Yellow)
+        var SamplePost3:Post = Post(ID:3, numLikes:1, numComments:4, postContent:"Post 3", liked:false, color: ColorType.Gray)
+        var SamplePost4:Post = Post(ID:4, numLikes:2, numComments:7, postContent:"Post 4", liked:true, color: ColorType.LightBlue)
+        var SamplePost5:Post = Post(ID:5, numLikes:5, numComments:3, postContent:"Post 5", liked:true, color: ColorType.DarkBlue)
         var SamplePost6:Post = Post(ID:6, numLikes:74, numComments:0, postContent:"Post 6",
-            liked:false)
+            liked:false, color: ColorType.Purple)
         var SamplePost7:Post = Post(ID:7, numLikes:1, numComments:29, postContent:"Post 7",
-            liked:false)
+            liked:false, color: ColorType.Orange)
         var SamplePost8:Post = Post(ID:8, numLikes:0, numComments:12, postContent:"Post 8",
-            liked:true)
+            liked:true, color: ColorType.Pink)
         var SamplePost9:Post = Post(ID:9, numLikes:25, numComments:34, postContent:"Post 9",
-            liked:false)
+            liked:false, color: ColorType.Teal)
         var SamplePost10:Post = Post(ID:10, numLikes:8, numComments:1, postContent:"Post 10",
-            liked:true)
+            liked:true, color: ColorType.Yellow)
         
         mainTableSource = [SamplePost1, SamplePost2, SamplePost3, SamplePost4, SamplePost5,SamplePost6, SamplePost7, SamplePost8, SamplePost9, SamplePost10]
     }

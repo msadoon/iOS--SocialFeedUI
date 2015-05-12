@@ -10,6 +10,7 @@
 		8E23667A1AFEBE2F006AEBC5 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2366781AFEBE2F006AEBC5 /* PostTableViewCell.swift */; };
 		8E23667E1AFEC89B006AEBC5 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E23667C1AFEC5C7006AEBC5 /* PostTableViewCell.xib */; };
 		8E2366801AFFCC1E006AEBC5 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23667F1AFFCC1E006AEBC5 /* Post.swift */; };
+		8E2366841B01756B006AEBC5 /* ColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2366831B01756B006AEBC5 /* ColorType.swift */; };
 		8EA1CC6D1AF8F4F4001CA4AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA1CC6C1AF8F4F4001CA4AE /* AppDelegate.swift */; };
 		8EA1CC6F1AF8F4F4001CA4AE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA1CC6E1AF8F4F4001CA4AE /* LoginViewController.swift */; };
 		8EA1CC741AF8F4F4001CA4AE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EA1CC731AF8F4F4001CA4AE /* Images.xcassets */; };
@@ -34,6 +35,7 @@
 		8E2366781AFEBE2F006AEBC5 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostTableViewCell.swift; path = ../JomJom/PostTableViewCell.swift; sourceTree = "<group>"; };
 		8E23667C1AFEC5C7006AEBC5 /* PostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 		8E23667F1AFFCC1E006AEBC5 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		8E2366831B01756B006AEBC5 /* ColorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorType.swift; sourceTree = "<group>"; };
 		8EA1CC671AF8F4F4001CA4AE /* JomJom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JomJom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EA1CC6B1AF8F4F4001CA4AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8EA1CC6C1AF8F4F4001CA4AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				8E23667F1AFFCC1E006AEBC5 /* Post.swift */,
+				8E2366831B01756B006AEBC5 /* ColorType.swift */,
 				8E2366781AFEBE2F006AEBC5 /* PostTableViewCell.swift */,
 				8E23667C1AFEC5C7006AEBC5 /* PostTableViewCell.xib */,
 				8EA1CC8F1AF9083B001CA4AE /* AllPostsViewController.swift */,
@@ -262,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EA1CC901AF9083B001CA4AE /* AllPostsViewController.swift in Sources */,
+				8E2366841B01756B006AEBC5 /* ColorType.swift in Sources */,
 				8EA1CC6F1AF8F4F4001CA4AE /* LoginViewController.swift in Sources */,
 				8E23667A1AFEBE2F006AEBC5 /* PostTableViewCell.swift in Sources */,
 				8E2366801AFFCC1E006AEBC5 /* Post.swift in Sources */,

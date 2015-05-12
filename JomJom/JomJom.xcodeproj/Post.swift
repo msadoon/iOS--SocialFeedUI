@@ -15,4 +15,5 @@ struct Post {
     var numComments: Int
     var postContent: String
     var liked: Bool
+    var color:ColorType
 }
