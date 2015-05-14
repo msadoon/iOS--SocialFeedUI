@@ -16,6 +16,10 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     var bottomNav:UIView?
     var topTabBar:UIView?
     var mainTable:UITableView?
+    var goToTopButton:UIButton?
+    var refreshControl:UIRefreshControl?
+    
+    var tableResize:Bool = false
     var mainTableSource:[Post] = []
     
     override func viewDidLoad() {
@@ -28,6 +32,7 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         setupTableDatasource()
         setupTableView()
         setupRefreshControl()
+        setupGoToTopButton()
     }
     
     override func didReceiveMemoryWarning() {
@@ -82,12 +87,22 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         self.navigationItem.titleView = updatingChatTitleButton
     }
     
+    func setupGoToTopButton() {
+        goToTopButton = UIButton(frame: CGRectMake(buttonWidth!, 65, CGFloat(utilityInstance.getScreenWidth()/3), 50))
+        goToTopButton!.setBackgroundImage(UIImage(named: "1.2gototop"), forState: UIControlState.Normal)
+        goToTopButton!.setBackgroundImage(UIImage(named: "1.2gototop"), forState: UIControlState.Selected)
+        goToTopButton!.setBackgroundImage(UIImage(named: "1.2gototop"), forState: UIControlState.Highlighted)
+        goToTopButton!.addTarget(self, action: "scrollToTop", forControlEvents: UIControlEvents.TouchUpInside)
+        goToTopButton!.hidden = true
+        self.view.addSubview(goToTopButton!)
+    }
+    
     func setupRefreshControl() {
-        var refreshControl:UIRefreshControl = UIRefreshControl()
-        refreshControl.backgroundColor = UIColor.clearColor()
-        refreshControl.tintColor = utilityInstance.UIColorFromRGB(0xC0F1E9)
-        refreshControl.addTarget(self, action: nil, forControlEvents: UIControlEvents.ValueChanged)
-        mainTable?.addSubview(refreshControl)
+        refreshControl = UIRefreshControl()
+        refreshControl!.backgroundColor = UIColor.clearColor()
+        refreshControl!.tintColor = utilityInstance.UIColorFromRGB(0xC0F1E9)
+        refreshControl!.addTarget(self, action: nil, forControlEvents: UIControlEvents.ValueChanged)
+        mainTable?.addSubview(refreshControl!)
         
     }
     
@@ -228,32 +243,42 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     
     //UIScrollViewDelegate
     func scrollViewDidScroll(scrollView: UIScrollView) {
-//        if (scrollView.contentOffset.y <= 0) {
-//            //animate
-//            UIView.transitionWithView(self.bottomNav!,
-//                duration: 0.5,
-//                options: UIViewAnimationOptions.CurveEaseOut,
-//                animations: {
-//                    self.bottomNav?.frame = CGRectMake(0, self.bottomNav!.frame.origin.y-self.bottomNav!.frame.height-CGFloat(25)-39, self.bottomNav!.frame.width, self.bottomNav!.frame.height)
-//                    self.topTabBar?.frame = CGRectMake(self.topTabBar!.frame.origin.x, 0, self.topTabBar!.frame.width, self.topTabBar!.frame.height)
-//                    self.mainTable?.frame = CGRectMake(self.mainTable!.frame.origin.x, self.mainTable!.frame.origin.y, self.mainTable!.frame.width, CGFloat(self.utilityInstance.getScreenHeight())-self.bottomNav!.frame.height)
-//                },
-//                completion: nil)
-//        } else if (scrollView.contentOffset.y > 0) {
-//            UIView.transitionWithView(self.bottomNav!,
-//                duration: 0.5,
-//                options: UIViewAnimationOptions.CurveEaseOut,
-//                animations: {
-//                    self.bottomNav?.frame = CGRectMake(0, self.bottomNav!.frame.origin.y+self.bottomNav!.frame.height+CGFloat(25)+39, self.bottomNav!.frame.width, self.bottomNav!.frame.height)
-//                    self.topTabBar?.frame = CGRectMake(self.topTabBar!.frame.origin.x, -25, self.topTabBar!.frame.width, self.topTabBar!.frame.height)
-//                    self.mainTable?.frame = CGRectMake(self.mainTable!.frame.origin.x, self.mainTable!.frame.origin.y, self.mainTable!.frame.width, CGFloat(self.utilityInstance.getScreenHeight()))
-//                },
-//                completion: nil)
-//        }
+        if (tableResize) {
+            if (scrollView.contentOffset.y <= 0) {
+                tableResize = false
+                goToTopButton?.hidden = true
+                //animate
+                UIView.transitionWithView(self.bottomNav!,
+                    duration: 0.3,
+                    options: UIViewAnimationOptions.CurveEaseInOut,
+                    animations: {
+                        self.mainTable?.frame = CGRectMake(self.mainTable!.frame.origin.x, self.mainTable!.frame.origin.y+25, self.mainTable!.frame.width, self.mainTable!.frame.height-self.bottomNav!.frame.height-25)
+                        
+                    },
+                    completion: nil)
+            }
+        } else {
+            if (scrollView.contentOffset.y > 0) {
+                goToTopButton?.hidden = false
+                refreshControl?.endRefreshing()
+                tableResize = true
+                UIView.transitionWithView(self.bottomNav!,
+                    duration: 0.3,
+                    options: UIViewAnimationOptions.CurveEaseInOut,
+                    animations: {
+                        self.mainTable?.frame = CGRectMake(self.mainTable!.frame.origin.x, self.mainTable!.frame.origin.y-25, self.mainTable!.frame.width, self.mainTable!.frame.height+self.bottomNav!.frame.height+25)
+                    },
+                    completion: nil)
+            }
+        }
     }
     
     
     //MARK: IBActions or target actions
+    
+    func scrollToTop() {
+        mainTable?.scrollRectToVisible(CGRectMake(0, 0, CGFloat(utilityInstance.getScreenWidth()), 1), animated: true)
+    }
     
     func myPosts() {
         println("My posts")
