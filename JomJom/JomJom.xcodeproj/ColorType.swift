@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum ColorType {
+public enum ColorType {
     case Teal 
     case Yellow
     case Gray

@@ -222,7 +222,6 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         newCell.backgroundColor = utilityInstance.UIColorFromRGB(0xF0F7F2)
         newCell.loadPost(mainTableSource[indexPath.row])
         newCell.cellView.layer.bounds = CGRectMake(0, 0, 320*0.9375, 200*0.933335)
-        
         newCell.cellView.layer.shadowPath = UIBezierPath(rect: newCell.cellView.layer.bounds).CGPath
         newCell.cellView.layer.shadowOffset = CGSizeMake(2, 2)
         newCell.cellView.layer.shadowColor = UIColor.blackColor().CGColor
@@ -316,6 +315,8 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func goToWritePost() {
         println("write post")
+        let writePostVC:CreatePostViewController = CreatePostViewController.init(nibName:"CreatePostViewController", bundle:nil)
+        self.navigationController?.pushViewController(writePostVC, animated: true)
     }
     
     func goToPersonalChat() {

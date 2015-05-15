@@ -30,6 +30,8 @@ class PostTableViewCell: UITableViewCell {
     }
     
     private func setupButtons() {
+        cellPostContentLabel.numberOfLines = 0
+        
         self.cellCommentButton.setBackgroundImage(UIImage(named:"1.1emptychat"), forState: UIControlState.Normal)
         self.cellCommentButton.setBackgroundImage(UIImage(named:"1.1emptychat"), forState: UIControlState.Highlighted)
         self.cellCommentButton.setBackgroundImage(UIImage(named:"1.1emptychat"), forState: UIControlState.Selected)
@@ -58,30 +60,24 @@ class PostTableViewCell: UITableViewCell {
     private func loadColor(type:ColorType) {
         var applyColor:UIColor = utilityInstance.UIColorFromRGB(0xFFFFFF)
         var cornerImageString:String = ""
+        
+        applyColor = utilityInstance.returnColorForString(type)
         switch (type) {
             case ColorType.Teal:
-                applyColor = utilityInstance.UIColorFromRGB(0xC0F1E9)
                 cornerImageString = "1.1corner_a"
             case ColorType.Yellow:
-                applyColor = utilityInstance.UIColorFromRGB(0xF1EEBE)
                 cornerImageString = "1.1corner_b"
             case ColorType.Gray:
-                applyColor = utilityInstance.UIColorFromRGB(0xD6D6D6)
                 cornerImageString = "1.1corner_c"
             case ColorType.LightBlue:
-                applyColor = utilityInstance.UIColorFromRGB(0xBDE3F0)
                 cornerImageString = "1.1corner_d"
             case ColorType.Purple:
-                applyColor = utilityInstance.UIColorFromRGB(0xD9BDEF)
                 cornerImageString = "1.1corner_e"
             case ColorType.Orange:
-                applyColor = utilityInstance.UIColorFromRGB(0xF0D5BD)
                 cornerImageString = "1.1corner_f"
             case ColorType.Pink:
-                applyColor = utilityInstance.UIColorFromRGB(0xF0BDDB)
                 cornerImageString = "1.1corner_g"
             default:
-                applyColor = utilityInstance.UIColorFromRGB(0xBDD2F0)
                 cornerImageString = "1.1corner_h"
         }
         

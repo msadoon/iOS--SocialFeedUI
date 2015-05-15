@@ -19,6 +19,8 @@
 		8EA1CC921AF90FC8001CA4AE /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EA1CC911AF90FC8001CA4AE /* LoginViewController.xib */; };
 		8EA1CC941AF91EF5001CA4AE /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA1CC931AF91EF5001CA4AE /* Utilities.swift */; };
 		8EA1CC971AF92F1D001CA4AE /* AllPostsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EA1CC961AF92F1D001CA4AE /* AllPostsViewController.xib */; };
+		8EA7D5711B05216F006A5878 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA7D56F1B05216F006A5878 /* CreatePostViewController.swift */; };
+		8EA7D5741B0527EE006A5878 /* CreatePostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EA7D5731B0527EE006A5878 /* CreatePostViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		8EA1CC911AF90FC8001CA4AE /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		8EA1CC931AF91EF5001CA4AE /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		8EA1CC961AF92F1D001CA4AE /* AllPostsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllPostsViewController.xib; sourceTree = "<group>"; };
+		8EA7D56F1B05216F006A5878 /* CreatePostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePostViewController.swift; path = ../JomJom/CreatePostViewController.swift; sourceTree = "<group>"; };
+		8EA7D5731B0527EE006A5878 /* CreatePostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreatePostViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +132,7 @@
 				8EA1CC951AF91F02001CA4AE /* Utilities */,
 				8EA1CC8E1AF907EF001CA4AE /* AllPosts */,
 				8EA1CC8D1AF907E5001CA4AE /* Login */,
+				8EA7D56C1B052078006A5878 /* WritePost */,
 			);
 			name = Controllers;
 			path = ../JomJom.xcodeproj;
@@ -162,6 +167,16 @@
 			);
 			name = Utilities;
 			sourceTree = "<group>";
+		};
+		8EA7D56C1B052078006A5878 /* WritePost */ = {
+			isa = PBXGroup;
+			children = (
+				8EA7D56F1B05216F006A5878 /* CreatePostViewController.swift */,
+				8EA7D5731B0527EE006A5878 /* CreatePostViewController.xib */,
+			);
+			name = WritePost;
+			path = JomJom.xcodeproj;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -244,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EA1CC741AF8F4F4001CA4AE /* Images.xcassets in Resources */,
+				8EA7D5741B0527EE006A5878 /* CreatePostViewController.xib in Resources */,
 				8EA1CC921AF90FC8001CA4AE /* LoginViewController.xib in Resources */,
 				8EA1CC971AF92F1D001CA4AE /* AllPostsViewController.xib in Resources */,
 				8E23667E1AFEC89B006AEBC5 /* PostTableViewCell.xib in Resources */,
@@ -269,6 +285,7 @@
 				8EA1CC6F1AF8F4F4001CA4AE /* LoginViewController.swift in Sources */,
 				8E23667A1AFEBE2F006AEBC5 /* PostTableViewCell.swift in Sources */,
 				8E2366801AFFCC1E006AEBC5 /* Post.swift in Sources */,
+				8EA7D5711B05216F006A5878 /* CreatePostViewController.swift in Sources */,
 				8EA1CC941AF91EF5001CA4AE /* Utilities.swift in Sources */,
 				8EA1CC6D1AF8F4F4001CA4AE /* AppDelegate.swift in Sources */,
 			);

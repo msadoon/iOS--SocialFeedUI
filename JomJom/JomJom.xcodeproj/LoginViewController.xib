@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -67,6 +68,7 @@
                 <constraint firstItem="TWm-GX-jIn" firstAttribute="leading" secondItem="1fj-RP-kHF" secondAttribute="leading" constant="15" id="4qc-qd-kod"/>
                 <constraint firstAttribute="centerX" secondItem="1fj-RP-kHF" secondAttribute="centerX" constant="-0.5" id="G6j-rs-RNY"/>
                 <constraint firstItem="TWm-GX-jIn" firstAttribute="centerX" secondItem="Pyx-mf-rrs" secondAttribute="centerX" id="H2y-Z4-t3r"/>
+                <constraint firstAttribute="centerY" secondItem="TWm-GX-jIn" secondAttribute="centerY" constant="50.5" id="I62-t8-6l4"/>
                 <constraint firstItem="pfc-5E-N3c" firstAttribute="leading" secondItem="1fj-RP-kHF" secondAttribute="trailing" constant="-144" id="TEQ-Am-tUE"/>
                 <constraint firstItem="Pyx-mf-rrs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="agD-e7-QUC"/>
                 <constraint firstItem="OE5-nJ-cho" firstAttribute="top" secondItem="1fj-RP-kHF" secondAttribute="bottom" constant="-38" id="bTP-Ke-Hsx"/>
@@ -74,7 +76,6 @@
                 <constraint firstItem="Pyx-mf-rrs" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottomMargin" id="cRa-fp-w30"/>
                 <constraint firstItem="pfc-5E-N3c" firstAttribute="leading" secondItem="OE5-nJ-cho" secondAttribute="trailing" constant="18" id="gBD-Wy-jbk"/>
                 <constraint firstItem="Pyx-mf-rrs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-8" id="hxA-wL-vxe"/>
-                <constraint firstItem="TWm-GX-jIn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="179" id="vL9-Vu-FAc"/>
             </constraints>
             <point key="canvasLocation" x="225" y="397"/>
         </view>

@@ -44,4 +44,32 @@ public class Utilities {
             alpha: CGFloat(1.0)
         )
     }
+    
+    public func rollRandomColor() -> Int{
+        return Int(arc4random_uniform(9))
+    }
+    
+    public func returnColorForString(type:ColorType) -> UIColor
+    {
+        switch (type) {
+        case ColorType.Teal:
+            return UIColorFromRGB(0xC0F1E9)
+        case ColorType.Yellow:
+            return UIColorFromRGB(0xF1EEBE)
+        case ColorType.Gray:
+            return UIColorFromRGB(0xD6D6D6)
+        case ColorType.LightBlue:
+            return UIColorFromRGB(0xBDE3F0)
+        case ColorType.Purple:
+            return UIColorFromRGB(0xD9BDEF)
+        case ColorType.Orange:
+            return UIColorFromRGB(0xF0D5BD)
+        case ColorType.Pink:
+            return UIColorFromRGB(0xF0BDDB)
+        default:
+            return UIColorFromRGB(0xBDD2F0)
+        }
+    }
+
+    
 }
