@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreatePostViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
+class CreatePostViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, CreatePostViewControllerDelegate{
 
     var utilityInstance:Utilities = Utilities.utilitiesInstance
     var buttonWidth:CGFloat?
@@ -18,6 +18,7 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UIGesture
     var scrollView:UIScrollView?
     var postLabel:UILabel?
     var colorPickerView:ColorPickerControl?
+    var currentColor:ColorType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -150,7 +151,6 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UIGesture
         colorPickerView?.allBPaths = [utilityInstance.drawTeal(),utilityInstance.drawYellow(),utilityInstance.drawOrange(),utilityInstance.drawPink(),utilityInstance.drawGray(),utilityInstance.drawPurple(),utilityInstance.drawDarkBlue(), utilityInstance.drawLightBlue()]
         var randomColorNumber = utilityInstance.rollRandomColor()
         postView!.backgroundColor = pickRandomColor(randomColorNumber)
-
     }
 
     func setupPostLabel() {
@@ -158,8 +158,7 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UIGesture
         var postContentHorizontalSpacer:CGFloat = CGFloat(CGFloat(utilityInstance.getScreenWidth()) - CGFloat(213))*0.5
         postLabel = UILabel(frame: CGRectMake(postContentHorizontalSpacer, postContentVerticalSpacer, CGFloat(213), CGFloat(153)))//same height as the cell post content label (check xib)
         postLabel?.numberOfLines = 0
-        postLabel?.backgroundColor = UIColor.redColor()
-        
+        postLabel?.textAlignment = NSTextAlignment.Center
     }
     
     func setupPostText() {
@@ -177,7 +176,7 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UIGesture
         sendButton.setBackgroundImage(UIImage(named:"2.1post"), forState: UIControlState.Normal)
         sendButton.setBackgroundImage(UIImage(named:"2.1post"), forState: UIControlState.Selected)
         sendButton.setBackgroundImage(UIImage(named:"2.1post"), forState: UIControlState.Highlighted)
-        
+        sendButton.addTarget(self, action: "addPostToMainArray", forControlEvents: UIControlEvents.TouchUpInside)
         textView!.addSubview(sendButton)
         textView!.addSubview(textBox)
     }
@@ -204,6 +203,15 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UIGesture
         var dismissKeyboard:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "keyboardDismissTap:")
         dismissKeyboard.delegate = self
         self.view.addGestureRecognizer(dismissKeyboard)
+    }
+    
+    func addPostToMainArray() {
+        var pContent:String = postLabel!.text!
+        var newPost:Post = Post(ID:utilityInstance.getArrayForDemoPurposes().count+1, numLikes:0, numComments:0, postContent: pContent, liked:false, color: currentColor!)
+        var newArrayForPosts:Array = utilityInstance.getArrayForDemoPurposes()
+        newArrayForPosts.append(newPost)
+        utilityInstance.setArrayForDemoPurposes(newArrayForPosts)
+        popBack()
     }
     
     //MARK: Keyboard methods
@@ -248,4 +256,9 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UIGesture
         return true
     }
     
+    //MARK: Delegate callback methods
+    func changeBackgroundBasedOnColorWheel(color:ColorType) {
+        currentColor = color
+        self.postView?.backgroundColor = utilityInstance.returnColorForString(color)
+    }
 }

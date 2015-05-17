@@ -20,7 +20,6 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     var refreshControl:UIRefreshControl?
     
     var tableResize:Bool = false
-    var mainTableSource:[Post] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +32,10 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         setupTableView()
         setupRefreshControl()
         setupGoToTopButton()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        mainTable?.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -179,7 +182,8 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         var SamplePost10:Post = Post(ID:10, numLikes:8, numComments:1, postContent:"Post 10",
             liked:true, color: ColorType.Yellow)
         
-        mainTableSource = [SamplePost1, SamplePost2, SamplePost3, SamplePost4, SamplePost5,SamplePost6, SamplePost7, SamplePost8, SamplePost9, SamplePost10]
+        utilityInstance.setArrayForDemoPurposes([SamplePost1, SamplePost2, SamplePost3, SamplePost4, SamplePost5,SamplePost6, SamplePost7, SamplePost8, SamplePost9, SamplePost10])
+
     }
     
     func bottomNavBar() {
@@ -220,7 +224,7 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         
         newCell.contentView.backgroundColor = utilityInstance.UIColorFromRGB(0xF0F7F2)
         newCell.backgroundColor = utilityInstance.UIColorFromRGB(0xF0F7F2)
-        newCell.loadPost(mainTableSource[indexPath.row])
+        newCell.loadPost(utilityInstance.getArrayForDemoPurposes()[indexPath.row])
         newCell.cellView.layer.bounds = CGRectMake(0, 0, 320*0.9375, 200*0.933335)
         newCell.cellView.layer.shadowPath = UIBezierPath(rect: newCell.cellView.layer.bounds).CGPath
         newCell.cellView.layer.shadowOffset = CGSizeMake(2, 2)
@@ -232,7 +236,7 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mainTableSource.count
+        return utilityInstance.getArrayForDemoPurposes().count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -316,6 +320,7 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     func goToWritePost() {
         println("write post")
         let writePostVC:CreatePostViewController = CreatePostViewController.init(nibName:"CreatePostViewController", bundle:nil)
+        utilityInstance.setWriteVC(writePostVC)
         self.navigationController?.pushViewController(writePostVC, animated: true)
     }
     

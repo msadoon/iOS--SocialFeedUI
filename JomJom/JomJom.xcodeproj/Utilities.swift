@@ -13,9 +13,26 @@ public class Utilities {
     static var utilitiesInstance = Utilities.init()
     private var mainAppColor = UIColor(red: 94.0/255.0, green: 169.0/255.0, blue: 186.0/255.0, alpha: 1)
     private var centerPoint:CGPoint = CGPointMake(50.0,50.0)
-    
+    private var writePostVC:CreatePostViewController?
+    private var postArrayForDemoPurposes:[Post] = []
     init() {
        //this is a Singleton class used for common functions
+    }
+
+    func setArrayForDemoPurposes(arrayToSet:[Post]) {
+        postArrayForDemoPurposes = arrayToSet
+    }
+    
+    func getArrayForDemoPurposes() -> [Post] {
+        return postArrayForDemoPurposes
+    }
+    
+    func setWriteVC(createPostVC: CreatePostViewController) {
+        writePostVC = createPostVC
+    }
+    
+    func getWriteVC() -> CreatePostViewController {
+        return writePostVC!
     }
     
     public func getAppColor()->UIColor
