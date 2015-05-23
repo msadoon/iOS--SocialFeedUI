@@ -16,4 +16,6 @@ struct Post {
     var postContent: String
     var liked: Bool
     var color:ColorType
+    var createdTime: String
+    var createdCity: String
 }

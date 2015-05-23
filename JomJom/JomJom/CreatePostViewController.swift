@@ -8,24 +8,25 @@
 
 import UIKit
 
-class CreatePostViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, CreatePostViewControllerDelegate{
+class CreatePostViewController: UIViewController, UITextViewDelegate, UIGestureRecognizerDelegate, CreatePostViewControllerDelegate{
 
     var utilityInstance:Utilities = Utilities.utilitiesInstance
     var buttonWidth:CGFloat?
     var heightOfNavBar:CGFloat?
     var postView:UIView?
-    var textView:UIView?
+    var textView:PostTextView?
     var scrollView:UIScrollView?
-    var postLabel:UILabel?
+    var postLabel:UITextView?
     var colorPickerView:ColorPickerControl?
     var currentColor:ColorType?
+    var startEditing:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
         configureNavigationBar()
         setupPostSpaceAndColorPicker()
-        setupPostText()
+//        setupPostText()
         setupPostLabel()
         setupScrollView()
         setupKeyboardListeners()
@@ -62,6 +63,7 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UIGesture
         writePostButton.setBackgroundImage(UIImage(named: "2.1writepost"), forState: UIControlState.Normal)
         writePostButton.setBackgroundImage(UIImage(named: "2.1writepost"), forState: UIControlState.Selected)
         writePostButton.setBackgroundImage(UIImage(named: "2.1writepost"), forState: UIControlState.Highlighted)
+        writePostButton.addTarget(self, action: "addPostToMainArray", forControlEvents: UIControlEvents.TouchUpInside)
         var newBarItemRightButton:UIBarButtonItem = UIBarButtonItem(customView: writePostButton)
         self.navigationItem.rightBarButtonItem = newBarItemRightButton
         
@@ -97,48 +99,56 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UIGesture
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1a"), forState: UIControlState.Highlighted)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1a"), forState: UIControlState.Selected)
                 colorPickerView?.currentColorName = ColorType.Teal
+                currentColor = ColorType.Teal
             case 1:
                 applyColor = utilityInstance.returnColorForString(ColorType.Yellow)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1b"), forState: UIControlState.Normal)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1b"), forState: UIControlState.Highlighted)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1b"), forState: UIControlState.Selected)
                 colorPickerView?.currentColorName = ColorType.Yellow
+                currentColor = ColorType.Yellow
             case 2:
                 applyColor = utilityInstance.returnColorForString(ColorType.Gray)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1c"), forState: UIControlState.Normal)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1c"), forState: UIControlState.Highlighted)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1c"), forState: UIControlState.Selected)
                 colorPickerView?.currentColorName = ColorType.Gray
+                currentColor = ColorType.Gray
             case 3:
                 applyColor = utilityInstance.returnColorForString(ColorType.LightBlue)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1d"), forState: UIControlState.Normal)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1d"), forState: UIControlState.Highlighted)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1d"), forState: UIControlState.Selected)
                 colorPickerView?.currentColorName = ColorType.LightBlue
+                currentColor = ColorType.LightBlue
             case 4:
                 applyColor = utilityInstance.returnColorForString(ColorType.Purple)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1e"), forState: UIControlState.Normal)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1e"), forState: UIControlState.Highlighted)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1e"), forState: UIControlState.Selected)
                 colorPickerView?.currentColorName = ColorType.Purple
+                currentColor = ColorType.Purple
             case 5:
                 applyColor = utilityInstance.returnColorForString(ColorType.Orange)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1f"), forState: UIControlState.Normal)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1f"), forState: UIControlState.Highlighted)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1f"), forState: UIControlState.Selected)
                 colorPickerView?.currentColorName = ColorType.Orange
+                currentColor = ColorType.Orange
             case 6:
                 applyColor = utilityInstance.returnColorForString(ColorType.Pink)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1g"), forState: UIControlState.Normal)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1g"), forState: UIControlState.Highlighted)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1g"), forState: UIControlState.Selected)
                 colorPickerView?.currentColorName = ColorType.Pink
+                currentColor = ColorType.Pink
             default:
                 applyColor = utilityInstance.returnColorForString(ColorType.DarkBlue)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1h"), forState: UIControlState.Normal)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1h"), forState: UIControlState.Highlighted)
                 colorPickerView!.setBackgroundImage(UIImage(named: "2.1h"), forState: UIControlState.Selected)
                 colorPickerView?.currentColorName = ColorType.DarkBlue
+                currentColor = ColorType.DarkBlue
         }
         return applyColor
     }
@@ -146,7 +156,7 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UIGesture
     func setupPostSpaceAndColorPicker() {
         var navbarHeight = self.navigationController?.navigationBar.bounds.height as CGFloat!
         heightOfNavBar = CGFloat(navbarHeight+20)
-        postView = UIView(frame: CGRectMake(0, 0, CGFloat(utilityInstance.getScreenWidth()), CGFloat(utilityInstance.getScreenHeight())-heightOfNavBar!-44))
+        postView = UIView(frame: CGRectMake(0, 0, CGFloat(utilityInstance.getScreenWidth()), CGFloat(utilityInstance.getScreenHeight())-heightOfNavBar!))
         colorPickerView = ColorPickerControl(frame: CGRectMake(20, postView!.frame.height-120, 100, 100))
         colorPickerView?.allBPaths = [utilityInstance.drawTeal(),utilityInstance.drawYellow(),utilityInstance.drawOrange(),utilityInstance.drawPink(),utilityInstance.drawGray(),utilityInstance.drawPurple(),utilityInstance.drawDarkBlue(), utilityInstance.drawLightBlue()]
         var randomColorNumber = utilityInstance.rollRandomColor()
@@ -154,32 +164,36 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UIGesture
     }
 
     func setupPostLabel() {
-        var postContentVerticalSpacer:CGFloat = CGFloat(utilityInstance.getScreenWidth()*0.3)
+        var postContentVerticalSpacer:CGFloat = CGFloat(utilityInstance.getScreenWidth()*0.204)
         var postContentHorizontalSpacer:CGFloat = CGFloat(CGFloat(utilityInstance.getScreenWidth()) - CGFloat(213))*0.5
-        postLabel = UILabel(frame: CGRectMake(postContentHorizontalSpacer, postContentVerticalSpacer, CGFloat(213), CGFloat(153)))//same height as the cell post content label (check xib)
-        postLabel?.numberOfLines = 0
+        postLabel = PostTextView(frame: CGRectMake(postContentHorizontalSpacer, postContentVerticalSpacer, CGFloat(213), CGFloat(183)))//same height as the cell post content label (check xib)
+        postLabel?.delegate = self
+        postLabel?.textContainer.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        postLabel?.scrollEnabled = false
+        postLabel?.backgroundColor = UIColor.clearColor()
         postLabel?.textAlignment = NSTextAlignment.Center
+        applyPlaceholderStyle(postLabel!, placeholderString: utilityInstance.placeHolderTextCreatePost())
     }
     
-    func setupPostText() {
-        textView = UIView(frame: CGRectMake(0, postView!.frame.height, CGFloat(utilityInstance.getScreenWidth()), 44))
-        textView!.backgroundColor = utilityInstance.UIColorFromRGB(0xCBD6DD)
-        
-        var textBox:UITextField = UITextField(frame: CGRectMake(15, 9.5, CGFloat(utilityInstance.getScreenWidth()/1.30), 25))
-        textBox.addTarget(self, action: "textDidChange:", forControlEvents: UIControlEvents.EditingChanged)
-        textBox.borderStyle = UITextBorderStyle.RoundedRect
-        textBox.backgroundColor = UIColor.whiteColor()
-        textBox.delegate = self
-        var prefSendButtonWidth:CGFloat = CGFloat(utilityInstance.getScreenWidth()/10)
-        var prefSendButtonHeight:CGFloat = prefSendButtonWidth*0.85185
-        var sendButton:UIButton = UIButton(frame: CGRectMake(textBox.frame.width+32, 9.5, prefSendButtonHeight, 25))
-        sendButton.setBackgroundImage(UIImage(named:"2.1post"), forState: UIControlState.Normal)
-        sendButton.setBackgroundImage(UIImage(named:"2.1post"), forState: UIControlState.Selected)
-        sendButton.setBackgroundImage(UIImage(named:"2.1post"), forState: UIControlState.Highlighted)
-        sendButton.addTarget(self, action: "addPostToMainArray", forControlEvents: UIControlEvents.TouchUpInside)
-        textView!.addSubview(sendButton)
-        textView!.addSubview(textBox)
-    }
+//    func setupPostText() {
+//        textView = UIView(frame: CGRectMake(0, postView!.frame.height, CGFloat(utilityInstance.getScreenWidth()), 44))
+//        textView!.backgroundColor = utilityInstance.UIColorFromRGB(0xCBD6DD)
+//        
+//        var textBox:UITextField = UITextField(frame: CGRectMake(15, 9.5, CGFloat(utilityInstance.getScreenWidth()/1.30), 25))
+//        textBox.addTarget(self, action: "textDidChange:", forControlEvents: UIControlEvents.EditingChanged)
+//        textBox.borderStyle = UITextBorderStyle.RoundedRect
+//        textBox.backgroundColor = UIColor.whiteColor()
+//        textBox.delegate = self
+//        var prefSendButtonWidth:CGFloat = CGFloat(utilityInstance.getScreenWidth()/10)
+//        var prefSendButtonHeight:CGFloat = prefSendButtonWidth*0.85185
+//        var sendButton:UIButton = UIButton(frame: CGRectMake(textBox.frame.width+32, 9.5, prefSendButtonHeight, 25))
+//        sendButton.setBackgroundImage(UIImage(named:"2.1post"), forState: UIControlState.Normal)
+//        sendButton.setBackgroundImage(UIImage(named:"2.1post"), forState: UIControlState.Selected)
+//        sendButton.setBackgroundImage(UIImage(named:"2.1post"), forState: UIControlState.Highlighted)
+//        sendButton.addTarget(self, action: "addPostToMainArray", forControlEvents: UIControlEvents.TouchUpInside)
+//        textView!.addSubview(sendButton)
+//        textView!.addSubview(textBox)
+//    }
     
     func setupScrollView() {
         scrollView = UIScrollView(frame: CGRectMake(0, 0, CGFloat(utilityInstance.getScreenWidth()), CGFloat(utilityInstance.getScreenHeight())-heightOfNavBar!))
@@ -188,9 +202,7 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UIGesture
         scrollView?.delaysContentTouches = false
         scrollView?.addSubview(postView!)
         scrollView?.addSubview(postLabel!)
-        scrollView?.addSubview(textView!)
         scrollView?.addSubview(colorPickerView!)
-
         self.view.addSubview(scrollView!)
     }
     
@@ -207,11 +219,29 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UIGesture
     
     func addPostToMainArray() {
         var pContent:String = postLabel!.text!
-        var newPost:Post = Post(ID:utilityInstance.getArrayForDemoPurposes().count+1, numLikes:0, numComments:0, postContent: pContent, liked:false, color: currentColor!)
-        var newArrayForPosts:Array = utilityInstance.getArrayForDemoPurposes()
-        newArrayForPosts.append(newPost)
-        utilityInstance.setArrayForDemoPurposes(newArrayForPosts)
+        var newPost:Post = Post(ID:utilityInstance.getArrayForDemoPurposes().count+1, numLikes:0, numComments:0, postContent:pContent, liked:false, color: currentColor!, createdTime: "11 hours ago", createdCity: "Toronto")
+        utilityInstance.addPostToDemoArray(newPost)
         popBack()
+    }
+    
+    //MARK: TextView helper methods
+    
+    func applyPlaceholderStyle(txtView: UITextView, placeholderString: String) {
+        txtView.textColor = UIColor.lightGrayColor()
+        txtView.text = placeholderString
+    }
+    
+    func applyNonPlaceholderStyle(txtView: UITextView)
+    {
+        txtView.textColor = UIColor.darkTextColor()
+        txtView.alpha = 1.0
+        txtView.text = ""
+    }
+    
+    func moveCursorToStart(txtView: UITextView) {
+        dispatch_async(dispatch_get_main_queue(), {
+            txtView.selectedRange = NSMakeRange(0, 0)
+        })
     }
     
     //MARK: Keyboard methods
@@ -220,6 +250,7 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UIGesture
         let keyboardFrame = view.convertRect(notif.userInfo![UIKeyboardFrameEndUserInfoKey]!.CGRectValue(), fromView:nil)
         scrollView!.frame = CGRectMake(0, 0, CGFloat(utilityInstance.getScreenWidth()), CGFloat(utilityInstance.getScreenHeight())-heightOfNavBar!-keyboardFrame.height)
         scrollView?.contentOffset = CGPointMake(0, keyboardFrame.size.height)
+        scrollView?.scrollRectToVisible(CGRectMake(0, 0, CGFloat(utilityInstance.getScreenWidth()), 1), animated: false)
     }
     
     func keyboardWillHide(notif: NSNotification) {
@@ -227,33 +258,52 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UIGesture
         scrollView!.frame = CGRectMake(0, 0, CGFloat(utilityInstance.getScreenWidth()), CGFloat(utilityInstance.getScreenHeight())-heightOfNavBar!+keyboardFrame.height)
     }
     
+    //MARK: TextView Delegate Methods
+    
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+        if((textView == postLabel) && (textView.text == utilityInstance.placeHolderTextCreatePost()))
+        {
+            moveCursorToStart(textView)
+
+        }
+        return true
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        //handle placeholder text
+            if ((count(textView.text) >= count(utilityInstance.placeHolderTextCreatePost())) && !startEditing && (count(text)>0)) {
+                applyNonPlaceholderStyle(textView)
+                startEditing = true
+            } else if ((text == "") && startEditing && (count(textView.text) == 1)) {
+                startEditing = false
+                applyPlaceholderStyle(textView, placeholderString: utilityInstance.placeHolderTextCreatePost())
+                moveCursorToStart(textView)
+                let newRange = NSMakeRange(0, 0)
+                return false
+        }
+
+        //handles maximum characters and max lines
+        let textViewText:NSMutableString = NSMutableString(string: textView.text)
+        
+        textViewText.replaceCharactersInRange(range, withString: text)
+        
+        let maxLines = 12
+        let maxChars = 140
+        var currentNumLines = 1
+        var counter  = 0
+        for (counter = 0; counter < textViewText.length; counter++) {
+            if (NSCharacterSet.newlineCharacterSet().characterIsMember(textViewText.characterAtIndex(counter))) {
+                currentNumLines++
+            }
+        }
+        
+        return ((currentNumLines <= maxLines) && ((textViewText.length-currentNumLines) <= maxChars))
+    }
+    
     //MARK: Gesture Recognizer Methods
     
     func keyboardDismissTap(gesture: UITapGestureRecognizer) {
         self.view.endEditing(true)
-    }
-    
-    //MARK: TextField Event Listener
-    
-    func textDidChange(textField:UITextField) {
-        postLabel?.text = textField.text //140 character
-    }
-    
-    //MARK: TextField Delegate Methods
-    
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        //resize view
-        return true
-    }
-    
-    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
-        //resize view
-        return true
-    }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
     
     //MARK: Delegate callback methods

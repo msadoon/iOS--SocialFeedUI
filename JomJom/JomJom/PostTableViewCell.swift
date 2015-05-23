@@ -21,6 +21,8 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var cellLikesButton: UIButton!
     @IBOutlet weak var cellCommentButton: UIButton!
     @IBOutlet weak var cellPostContentLabel: UILabel!
+    @IBOutlet weak var newOrNot: UIImageView!
+    @IBOutlet weak var cityLabel: UILabel!
     
     
     override func awakeFromNib() {
@@ -49,6 +51,8 @@ class PostTableViewCell: UITableViewCell {
         cellLikesNumLabel.text = String(post.numLikes)
         cellCommentNumLabel.text = String(post.numComments)
         cellPostContentLabel.text = String(post.postContent)
+        cityLabel.text = String(post.createdCity)
+        newOrNot.image = UIImage(named: "1.1newpost_icon")
         if (post.liked) {
             self.cellLikesButton.selected = true
         } else {
@@ -92,11 +96,17 @@ class PostTableViewCell: UITableViewCell {
             thisPost?.numLikes += Int(1)
             thisPost?.liked = true
             cellLikesNumLabel.text = String(stringInterpolationSegment: thisPost!.numLikes as Int)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.utilityInstance.addLikeToPost(self.thisPost!.ID)
+            })
         } else {
             self.cellLikesButton.selected = false
             thisPost?.numLikes -= Int(1)
             thisPost?.liked = false
             cellLikesNumLabel.text = String(stringInterpolationSegment: thisPost!.numLikes as Int)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.utilityInstance.subtractLikeToPost(self.thisPost!.ID)
+            })
         }
     }
     

@@ -18,6 +18,7 @@ class ColorPickerControl:UIButton {
     
     override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent) -> Bool {
         checkColorBasedOnBezierPath(touch)
+        println(touch)
         return super.beginTrackingWithTouch(touch, withEvent: event)
     }
     

@@ -18,6 +18,7 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     var mainTable:UITableView?
     var goToTopButton:UIButton?
     var refreshControl:UIRefreshControl?
+    var lastScrollPostition: CGFloat? = 0
     
     var tableResize:Bool = false
     
@@ -91,10 +92,12 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func setupGoToTopButton() {
-        goToTopButton = UIButton(frame: CGRectMake(buttonWidth!, 65, CGFloat(utilityInstance.getScreenWidth()/3), 50))
-        goToTopButton!.setBackgroundImage(UIImage(named: "1.2gototop"), forState: UIControlState.Normal)
-        goToTopButton!.setBackgroundImage(UIImage(named: "1.2gototop"), forState: UIControlState.Selected)
-        goToTopButton!.setBackgroundImage(UIImage(named: "1.2gototop"), forState: UIControlState.Highlighted)
+        var image:UIImage = UIImage(named: "1.2gototop")!
+        var imageView:UIImageView = UIImageView(image: image)
+        goToTopButton = UIButton(frame: CGRectMake(CGFloat(utilityInstance.getScreenWidth()/2) - CGFloat((imageView.frame.width/3)/2), 20, imageView.frame.width/3, imageView.frame.height/3))
+        goToTopButton!.setBackgroundImage(image, forState: UIControlState.Normal)
+        goToTopButton!.setBackgroundImage(image, forState: UIControlState.Selected)
+        goToTopButton!.setBackgroundImage(image, forState: UIControlState.Highlighted)
         goToTopButton!.addTarget(self, action: "scrollToTop", forControlEvents: UIControlEvents.TouchUpInside)
         goToTopButton!.hidden = true
         self.view.addSubview(goToTopButton!)
@@ -165,25 +168,7 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func setupTableDatasource() {
-        
-        var SamplePost1:Post = Post(ID:1, numLikes:2, numComments:9, postContent:"Post Post Post Post Post Post Post Post Post Post", liked:true, color: ColorType.Teal)
-        var SamplePost2:Post = Post(ID:2, numLikes:4, numComments:8, postContent:"Post 2", liked:false, color: ColorType.Yellow)
-        var SamplePost3:Post = Post(ID:3, numLikes:1, numComments:4, postContent:"Post 3", liked:false, color: ColorType.Gray)
-        var SamplePost4:Post = Post(ID:4, numLikes:2, numComments:7, postContent:"Post 4", liked:true, color: ColorType.LightBlue)
-        var SamplePost5:Post = Post(ID:5, numLikes:5, numComments:3, postContent:"Post 5", liked:true, color: ColorType.DarkBlue)
-        var SamplePost6:Post = Post(ID:6, numLikes:74, numComments:0, postContent:"Post 6",
-            liked:false, color: ColorType.Purple)
-        var SamplePost7:Post = Post(ID:7, numLikes:1, numComments:29, postContent:"Post 7",
-            liked:false, color: ColorType.Orange)
-        var SamplePost8:Post = Post(ID:8, numLikes:0, numComments:12, postContent:"Post 8",
-            liked:true, color: ColorType.Pink)
-        var SamplePost9:Post = Post(ID:9, numLikes:25, numComments:34, postContent:"Post 9",
-            liked:false, color: ColorType.Teal)
-        var SamplePost10:Post = Post(ID:10, numLikes:8, numComments:1, postContent:"Post 10",
-            liked:true, color: ColorType.Yellow)
-        
-        utilityInstance.setArrayForDemoPurposes([SamplePost1, SamplePost2, SamplePost3, SamplePost4, SamplePost5,SamplePost6, SamplePost7, SamplePost8, SamplePost9, SamplePost10])
-
+        utilityInstance.setArrayForDemoPurposes()
     }
     
     func bottomNavBar() {
@@ -245,11 +230,23 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     //UIScrollViewDelegate
+    
+    
     func scrollViewDidScroll(scrollView: UIScrollView) {
+    
+        if ((lastScrollPostition > scrollView.contentOffset.y) && (scrollView.contentOffset.y != 0) && (scrollView.contentOffset.y >= 0)) {
+            goToTopButton?.hidden = false
+        } else {
+            goToTopButton?.hidden = true
+        }
+        
+        lastScrollPostition = scrollView.contentOffset.y
+        
+        
         if (tableResize) {
             if (scrollView.contentOffset.y <= 0) {
                 tableResize = false
-                goToTopButton?.hidden = true
+                
                 //animate
                 UIView.transitionWithView(self.bottomNav!,
                     duration: 0.3,
@@ -262,7 +259,7 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
             }
         } else {
             if (scrollView.contentOffset.y > 0) {
-                goToTopButton?.hidden = false
+                
                 refreshControl?.endRefreshing()
                 tableResize = true
                 UIView.transitionWithView(self.bottomNav!,

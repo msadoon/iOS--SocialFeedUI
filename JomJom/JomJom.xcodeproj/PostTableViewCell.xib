@@ -91,24 +91,48 @@
                                     </mask>
                                 </variation>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1p-jo-TbR">
+                                <rect key="frame" x="155" y="217" width="121" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="121" id="oAf-Ea-yw4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oma-yO-CCb">
+                                <rect key="frame" x="8" y="8" width="36" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="buZ-1I-tdb"/>
+                                    <constraint firstAttribute="width" constant="36" id="fWA-yE-bVK"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="b1p-jo-TbR" secondAttribute="centerX" constant="4" id="14j-u4-vgt"/>
+                            <constraint firstAttribute="bottom" secondItem="b1p-jo-TbR" secondAttribute="bottom" constant="4" id="30h-S5-y5f"/>
                             <constraint firstAttribute="bottom" secondItem="T5c-BV-X8s" secondAttribute="bottom" constant="3" id="4zr-9x-fdq"/>
                             <constraint firstAttribute="bottom" secondItem="JJ3-P7-VhV" secondAttribute="bottom" constant="3" id="7KR-nv-7Zu"/>
                             <constraint firstItem="UGV-qf-u4m" firstAttribute="top" secondItem="fx5-Qp-HZG" secondAttribute="top" constant="31" id="7s8-sj-sEc"/>
                             <constraint firstItem="XC4-Fn-aCI" firstAttribute="top" secondItem="UGV-qf-u4m" secondAttribute="bottom" constant="-171" id="7y8-cB-1of"/>
+                            <constraint firstItem="oma-yO-CCb" firstAttribute="leading" secondItem="XC4-Fn-aCI" secondAttribute="leading" id="8zz-jn-WDX"/>
+                            <constraint firstItem="oma-yO-CCb" firstAttribute="top" secondItem="fx5-Qp-HZG" secondAttribute="top" constant="8" id="9YY-1w-T0Y"/>
                             <constraint firstAttribute="centerY" secondItem="UGV-qf-u4m" secondAttribute="centerY" constant="13.5" id="BCC-yk-spd"/>
+                            <constraint firstItem="oma-yO-CCb" firstAttribute="top" secondItem="XC4-Fn-aCI" secondAttribute="top" id="BfU-Sr-rT4"/>
                             <constraint firstAttribute="bottom" secondItem="j41-Nc-QG3" secondAttribute="bottom" constant="26" id="D5a-Lx-ore"/>
                             <constraint firstItem="j41-Nc-QG3" firstAttribute="leading" secondItem="fx5-Qp-HZG" secondAttribute="leading" constant="326" id="DpD-2R-tGq"/>
                             <constraint firstAttribute="bottom" secondItem="7lP-MH-eFQ" secondAttribute="bottom" constant="5" id="GIt-nk-i4L"/>
                             <constraint firstItem="JJ3-P7-VhV" firstAttribute="top" secondItem="j41-Nc-QG3" secondAttribute="bottom" constant="2" id="I7U-QA-n4h"/>
+                            <constraint firstItem="XC4-Fn-aCI" firstAttribute="leading" secondItem="oma-yO-CCb" secondAttribute="trailing" id="Jxu-s1-yHb"/>
                             <constraint firstItem="UGV-qf-u4m" firstAttribute="leading" secondItem="fx5-Qp-HZG" secondAttribute="leading" constant="57" id="K0J-4p-6Bs"/>
                             <constraint firstItem="T5c-BV-X8s" firstAttribute="top" secondItem="XC4-Fn-aCI" secondAttribute="bottom" constant="2" id="MwD-nS-5Ym"/>
                             <constraint firstItem="UGV-qf-u4m" firstAttribute="top" secondItem="fx5-Qp-HZG" secondAttribute="top" constant="26" id="Oke-eZ-AGV"/>
                             <constraint firstItem="7lP-MH-eFQ" firstAttribute="leading" secondItem="fx5-Qp-HZG" secondAttribute="leading" constant="8" id="PJv-bh-PSR"/>
+                            <constraint firstAttribute="trailing" secondItem="oma-yO-CCb" secondAttribute="trailing" constant="395" id="Quk-zV-lci"/>
                             <constraint firstAttribute="trailing" secondItem="T5c-BV-X8s" secondAttribute="trailing" constant="34" id="QwC-C2-0vQ"/>
                             <constraint firstAttribute="centerX" secondItem="UGV-qf-u4m" secondAttribute="centerX" constant="4" id="Rbw-wH-aIc"/>
+                            <constraint firstItem="XC4-Fn-aCI" firstAttribute="top" secondItem="oma-yO-CCb" secondAttribute="bottom" constant="-44" id="TyS-x7-eVW"/>
                             <constraint firstItem="JJ3-P7-VhV" firstAttribute="top" secondItem="XC4-Fn-aCI" secondAttribute="bottom" constant="2" id="ZZd-ke-831"/>
                             <constraint firstItem="j41-Nc-QG3" firstAttribute="leading" secondItem="XC4-Fn-aCI" secondAttribute="trailing" constant="-109" id="ZjG-da-SCR"/>
                             <constraint firstAttribute="trailing" secondItem="j41-Nc-QG3" secondAttribute="trailing" id="Zyb-kG-QuF"/>
@@ -118,6 +142,7 @@
                             <constraint firstItem="XC4-Fn-aCI" firstAttribute="leading" secondItem="fx5-Qp-HZG" secondAttribute="leading" id="hEi-0w-JlV"/>
                             <constraint firstItem="XC4-Fn-aCI" firstAttribute="top" secondItem="fx5-Qp-HZG" secondAttribute="top" id="iUI-Td-xkT"/>
                             <constraint firstAttribute="trailing" secondItem="cIV-bX-qh3" secondAttribute="trailing" constant="8" id="kYM-do-v4Q"/>
+                            <constraint firstItem="oma-yO-CCb" firstAttribute="leading" secondItem="fx5-Qp-HZG" secondAttribute="leading" constant="8" id="n9F-ac-BKA"/>
                             <constraint firstAttribute="bottom" secondItem="XC4-Fn-aCI" secondAttribute="bottom" constant="26" id="nT9-4K-6az"/>
                             <constraint firstAttribute="bottom" secondItem="T5c-BV-X8s" secondAttribute="bottom" constant="4" id="rvf-Vx-0Fj"/>
                             <constraint firstItem="j41-Nc-QG3" firstAttribute="top" secondItem="XC4-Fn-aCI" secondAttribute="bottom" constant="-56" id="t2e-pZ-iBb"/>
@@ -129,6 +154,11 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="7y8-cB-1of"/>
+                                <exclude reference="Jxu-s1-yHb"/>
+                                <exclude reference="TyS-x7-eVW"/>
+                                <exclude reference="8zz-jn-WDX"/>
+                                <exclude reference="BfU-Sr-rT4"/>
+                                <exclude reference="Quk-zV-lci"/>
                                 <exclude reference="Oke-eZ-AGV"/>
                                 <exclude reference="ekv-hC-A5M"/>
                                 <exclude reference="xzF-7k-C6I"/>
@@ -162,6 +192,8 @@
                 <outlet property="cellPostCornerImageView" destination="j41-Nc-QG3" id="ORu-SP-fb0"/>
                 <outlet property="cellPostImageView" destination="XC4-Fn-aCI" id="Nch-tQ-amb"/>
                 <outlet property="cellView" destination="fx5-Qp-HZG" id="SuK-bt-pyE"/>
+                <outlet property="cityLabel" destination="b1p-jo-TbR" id="WYL-lV-mqG"/>
+                <outlet property="newOrNot" destination="oma-yO-CCb" id="BUg-is-UOH"/>
             </connections>
             <point key="canvasLocation" x="319.5" y="35"/>
         </tableViewCell>
