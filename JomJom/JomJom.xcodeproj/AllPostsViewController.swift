@@ -56,25 +56,25 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         //left navigation bar button item
         self.navigationController?.navigationBarHidden = false
         self.navigationItem.hidesBackButton = true
-        var groupChatButton:UIButton = UIButton(frame: CGRectMake(0, 0, 30.0, 30.0))
+        let groupChatButton:UIButton = UIButton(frame: CGRectMake(0, 0, 30.0, 30.0))
         groupChatButton.addTarget(self, action: "goToGroupChat", forControlEvents: UIControlEvents.TouchUpInside)
         groupChatButton.setBackgroundImage(UIImage(named: "1.0wechat"), forState: UIControlState.Normal)
         groupChatButton.setBackgroundImage(UIImage(named: "1.0wechat"), forState: UIControlState.Selected)
         groupChatButton.setBackgroundImage(UIImage(named: "1.0wechat"), forState: UIControlState.Highlighted)
-        var newBarItemBackButton:UIBarButtonItem = UIBarButtonItem(customView: groupChatButton)
+        let newBarItemBackButton:UIBarButtonItem = UIBarButtonItem(customView: groupChatButton)
         self.navigationItem.leftBarButtonItem = newBarItemBackButton
         //right navigation bar button item
-        var writePostButton:UIButton = UIButton(frame: CGRectMake(0, 0, 30.0, 30.0))
+        let writePostButton:UIButton = UIButton(frame: CGRectMake(0, 0, 30.0, 30.0))
         writePostButton.addTarget(self, action: "goToWritePost", forControlEvents: UIControlEvents.TouchUpInside)
         writePostButton.setBackgroundImage(UIImage(named: "1.0post"), forState: UIControlState.Normal)
         writePostButton.setBackgroundImage(UIImage(named: "1.0post"), forState: UIControlState.Selected)
         writePostButton.setBackgroundImage(UIImage(named: "1.0post"), forState: UIControlState.Highlighted)
-        var newBarItemRightButton:UIBarButtonItem = UIBarButtonItem(customView: writePostButton)
+        let newBarItemRightButton:UIBarButtonItem = UIBarButtonItem(customView: writePostButton)
         self.navigationItem.rightBarButtonItem = newBarItemRightButton
         
         //custom titleview
-        var updatingChatTitleButton:UIButton = UIButton(frame: CGRectMake(0, 0, 200, 34)) //50,34 bubble icon original size
-        var imageInsets:UIEdgeInsets = UIEdgeInsetsMake(0, 21, 0, 10)
+        let updatingChatTitleButton:UIButton = UIButton(frame: CGRectMake(0, 0, 200, 34)) //50,34 bubble icon original size
+        let imageInsets:UIEdgeInsets = UIEdgeInsetsMake(0, 21, 0, 10)
         var updatingChatTitleImage:UIImage =  UIImage(named: "1.0wechat_update")!
         updatingChatTitleImage = updatingChatTitleImage.resizableImageWithCapInsets(imageInsets)
         updatingChatTitleButton.setBackgroundImage(updatingChatTitleImage, forState: UIControlState.Normal)
@@ -83,7 +83,7 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         updatingChatTitleButton.addTarget(self, action: "goToGroupChat", forControlEvents: UIControlEvents.TouchUpInside)
         
             //add a UILabel to update text from server every 3 seconds
-            var serverText:UILabel = UILabel(frame: CGRectMake(21, 0, 170, 34))
+            let serverText:UILabel = UILabel(frame: CGRectMake(21, 0, 170, 34))
             serverText.text = "server text"
             serverText.textAlignment = NSTextAlignment.Center
             updatingChatTitleButton.addSubview(serverText)
@@ -92,8 +92,8 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func setupGoToTopButton() {
-        var image:UIImage = UIImage(named: "1.2gototop")!
-        var imageView:UIImageView = UIImageView(image: image)
+        let image:UIImage = UIImage(named: "1.2gototop")!
+        let imageView:UIImageView = UIImageView(image: image)
         goToTopButton = UIButton(frame: CGRectMake(CGFloat(utilityInstance.getScreenWidth()/2) - CGFloat((imageView.frame.width/3)/2), 20, imageView.frame.width/3, imageView.frame.height/3))
         goToTopButton!.setBackgroundImage(image, forState: UIControlState.Normal)
         goToTopButton!.setBackgroundImage(image, forState: UIControlState.Selected)
@@ -116,9 +116,9 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         
         topTabBar = UIView(frame: CGRectMake(0, 0, CGFloat(utilityInstance.getScreenWidth()), 25))
         
-        var myPosts:UIButton = UIButton(frame: CGRectMake(0, 0, buttonWidth!, 25))
-        var popularPosts:UIButton = UIButton(frame:CGRectMake(buttonWidth!+myPosts.frame.origin.x, 0, buttonWidth!, 25))
-        var cityPosts:UIButton = UIButton(frame:CGRectMake(buttonWidth!+popularPosts.frame.origin.x, 0, buttonWidth!, 25))
+        let myPosts:UIButton = UIButton(frame: CGRectMake(0, 0, buttonWidth!, 25))
+        let popularPosts:UIButton = UIButton(frame:CGRectMake(buttonWidth!+myPosts.frame.origin.x, 0, buttonWidth!, 25))
+        let cityPosts:UIButton = UIButton(frame:CGRectMake(buttonWidth!+popularPosts.frame.origin.x, 0, buttonWidth!, 25))
         
         cityPosts.backgroundColor = UIColor(red: 94.0/255.0, green: 169.0/255.0, blue: 186.0/255.0, alpha: 1)
         popularPosts.backgroundColor = UIColor(red: 94.0/255.0, green: 169.0/255.0, blue: 186.0/255.0, alpha: 1)
@@ -154,12 +154,12 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func setupTableView() {
-        var navbarHeight = self.navigationController?.navigationBar.bounds.height as CGFloat!
+        let navbarHeight = self.navigationController?.navigationBar.bounds.height as CGFloat!
         mainTable = UITableView(frame: CGRectMake(CGFloat(0), CGFloat(25), CGFloat(utilityInstance.getScreenWidth()), CGFloat(utilityInstance.getScreenHeight())-(navbarHeight+25+44+20)))//20 pixels I cannot account for
         mainTable!.delegate = self
         mainTable!.dataSource = self
 
-        var nib = UINib(nibName: "PostTableViewCell", bundle: nil)
+        let nib = UINib(nibName: "PostTableViewCell", bundle: nil)
         mainTable!.registerNib(nib, forCellReuseIdentifier: "postCell")
         mainTable!.backgroundColor = utilityInstance.UIColorFromRGB(0xF0F7F2)
         mainTable!.separatorColor = UIColor.clearColor()
@@ -172,13 +172,13 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func bottomNavBar() {
-        var navbarHeight = self.navigationController?.navigationBar.bounds.height as CGFloat!
+        let navbarHeight = self.navigationController?.navigationBar.bounds.height as CGFloat!
         bottomNav = UIView(frame: CGRectMake(0, CGFloat(utilityInstance.getScreenHeight())-(navbarHeight+CGFloat(25)+39), CGFloat(utilityInstance.getScreenWidth()), 44)) //5 pixels I cannot account for
         bottomNav!.backgroundColor = utilityInstance.getAppColor()
         self.view.addSubview(bottomNav!)
         
         //left navigation button -- My Message
-        var myMessageButton:UIButton = UIButton(frame: CGRectMake(12, 5, 33.0, 33.0))
+        let myMessageButton:UIButton = UIButton(frame: CGRectMake(12, 5, 33.0, 33.0))
         myMessageButton.addTarget(self, action: "goToMyMessage", forControlEvents: UIControlEvents.TouchUpInside)
         myMessageButton.setBackgroundImage(UIImage(named: "1.0my_message"), forState: UIControlState.Normal)
         myMessageButton.setBackgroundImage(UIImage(named: "1.0my_message"), forState: UIControlState.Selected)
@@ -186,7 +186,7 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         bottomNav!.addSubview(myMessageButton)
         
         //right navigation button
-        var mySettingsButton:UIButton = UIButton(frame: CGRectMake(CGFloat(utilityInstance.getScreenWidth()-12-33.0), 5, 33.0, 33.0))
+        let mySettingsButton:UIButton = UIButton(frame: CGRectMake(CGFloat(utilityInstance.getScreenWidth()-12-33.0), 5, 33.0, 33.0))
         mySettingsButton.addTarget(self, action: "goToMySettings", forControlEvents: UIControlEvents.TouchUpInside)
         mySettingsButton.setBackgroundImage(UIImage(named: "1.0settings"), forState: UIControlState.Normal)
         mySettingsButton.setBackgroundImage(UIImage(named: "1.0settings"), forState: UIControlState.Selected)
@@ -195,7 +195,7 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
 
         //center navigation button
         //custom titleview
-        var personalChatButton:UIButton = UIButton(frame: CGRectMake(CGFloat((utilityInstance.getScreenWidth()/2)-100), 5, 200, 34))
+        let personalChatButton:UIButton = UIButton(frame: CGRectMake(CGFloat((utilityInstance.getScreenWidth()/2)-100), 5, 200, 34))
         personalChatButton.setTitle("1 on 1 chat", forState: UIControlState.Normal)
         personalChatButton.addTarget(self, action: "goToPersonalChat", forControlEvents: UIControlEvents.TouchUpInside)
         bottomNav!.addSubview(personalChatButton)
@@ -204,7 +204,7 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     //UITableViewDelegate
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var newCell:PostTableViewCell = mainTable?.dequeueReusableCellWithIdentifier("postCell") as! PostTableViewCell
+        let newCell:PostTableViewCell = mainTable?.dequeueReusableCellWithIdentifier("postCell") as! PostTableViewCell
         // configure drop shadow
         
         newCell.contentView.backgroundColor = utilityInstance.UIColorFromRGB(0xF0F7F2)
@@ -281,7 +281,7 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func myPosts() {
-        println("My posts")
+        print("My posts")
         
         UIView.transitionWithView(self.underline!,
             duration: 0.3,
@@ -291,7 +291,7 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func popularPosts() {
-        println("Popular Posts")
+        print("Popular Posts")
         
         UIView.transitionWithView(self.underline!,
             duration: 0.3,
@@ -301,7 +301,7 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func cityPosts() {
-        println("City Posts")
+        print("City Posts")
         
         UIView.transitionWithView(self.underline!,
             duration: 0.3,
@@ -311,25 +311,25 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func goToGroupChat() {
-        println("group chat")
+        let groupChatVC:GroupChat = GroupChat.init(nibName:"GroupChat", bundle:nil)
+        self.navigationController?.pushViewController(groupChatVC, animated: true)
     }
     
     func goToWritePost() {
-        println("write post")
         let writePostVC:CreatePostViewController = CreatePostViewController.init(nibName:"CreatePostViewController", bundle:nil)
         utilityInstance.setWriteVC(writePostVC)
         self.navigationController?.pushViewController(writePostVC, animated: true)
     }
     
     func goToPersonalChat() {
-        println("personal chat")
+        print("personal chat")
     }
     
     func goToMySettings() {
-        println("settings")
+        print("settings")
     }
     
     func goToMyMessage() {
-        println("my message")
+        print("my message")
     }
 }

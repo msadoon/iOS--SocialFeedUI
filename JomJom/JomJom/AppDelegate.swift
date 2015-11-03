@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func setupNavigationBarForApp() {
-        var navigationbarAppearance = UINavigationBar.appearance()
+        let navigationbarAppearance = UINavigationBar.appearance()
         navigationbarAppearance.barTintColor = utilityInstance?.getAppColor()
         navigationbarAppearance.translucent = false
     }

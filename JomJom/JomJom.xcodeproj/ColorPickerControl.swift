@@ -16,24 +16,23 @@ class ColorPickerControl:UIButton {
     var allBPaths:[UIBezierPath?] = []
     var delegate:CreatePostViewControllerDelegate? = Utilities.utilitiesInstance.getWriteVC()
     
-    override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent) -> Bool {
+    override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
         checkColorBasedOnBezierPath(touch)
-        println(touch)
         return super.beginTrackingWithTouch(touch, withEvent: event)
     }
     
-    override func continueTrackingWithTouch(touch: UITouch, withEvent event: UIEvent) -> Bool {
+    override func continueTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
         checkColorBasedOnBezierPath(touch)
         return super.continueTrackingWithTouch(touch, withEvent: event)
     }
     
-    override func endTrackingWithTouch(touch: UITouch, withEvent event: UIEvent) {
-        checkColorBasedOnBezierPath(touch)
+    override func endTrackingWithTouch(touch: UITouch?, withEvent event: UIEvent?) {
+        checkColorBasedOnBezierPath(touch!)
         return super.endTrackingWithTouch(touch, withEvent: event)
     }
     
     override func drawRect(rect: CGRect) {
-        let context:CGContextRef = UIGraphicsGetCurrentContext()
+        let context:CGContextRef = UIGraphicsGetCurrentContext()!
         CGContextAddPath(context, currentBPath?.CGPath)
         CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
         CGContextSetLineWidth(context, 1.0)

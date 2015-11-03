@@ -50,26 +50,26 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UIGestureR
         //left navigation bar button item
         self.navigationController?.navigationBarHidden = false
         self.navigationItem.hidesBackButton = true
-        var groupChatButton:UIButton = UIButton(frame: CGRectMake(0, 0, 30.0, 30.0))
+        let groupChatButton:UIButton = UIButton(frame: CGRectMake(0, 0, 30.0, 30.0))
         groupChatButton.addTarget(self, action: "popBack", forControlEvents: UIControlEvents.TouchUpInside)
         groupChatButton.setBackgroundImage(UIImage(named: "2.1back"), forState: UIControlState.Normal)
         groupChatButton.setBackgroundImage(UIImage(named: "2.1back"), forState: UIControlState.Selected)
         groupChatButton.setBackgroundImage(UIImage(named: "2.1back"), forState: UIControlState.Highlighted)
-        var newBarItemBackButton:UIBarButtonItem = UIBarButtonItem(customView: groupChatButton)
+        let newBarItemBackButton:UIBarButtonItem = UIBarButtonItem(customView: groupChatButton)
         self.navigationItem.leftBarButtonItem = newBarItemBackButton
         //right navigation bar button item
-        var writePostButton:UIButton = UIButton(frame: CGRectMake(0, 0, 30.0, 30.0))
+        let writePostButton:UIButton = UIButton(frame: CGRectMake(0, 0, 30.0, 30.0))
         writePostButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
         writePostButton.setBackgroundImage(UIImage(named: "2.1writepost"), forState: UIControlState.Normal)
         writePostButton.setBackgroundImage(UIImage(named: "2.1writepost"), forState: UIControlState.Selected)
         writePostButton.setBackgroundImage(UIImage(named: "2.1writepost"), forState: UIControlState.Highlighted)
         writePostButton.addTarget(self, action: "addPostToMainArray", forControlEvents: UIControlEvents.TouchUpInside)
-        var newBarItemRightButton:UIBarButtonItem = UIBarButtonItem(customView: writePostButton)
+        let newBarItemRightButton:UIBarButtonItem = UIBarButtonItem(customView: writePostButton)
         self.navigationItem.rightBarButtonItem = newBarItemRightButton
         
         //custom titleview
-        var updatingChatTitleButton:UIButton = UIButton(frame: CGRectMake(0, 0, 200, 34)) //50,34 bubble icon original size
-        var imageInsets:UIEdgeInsets = UIEdgeInsetsMake(0, 21, 0, 10)
+        let updatingChatTitleButton:UIButton = UIButton(frame: CGRectMake(0, 0, 200, 34)) //50,34 bubble icon original size
+        let imageInsets:UIEdgeInsets = UIEdgeInsetsMake(0, 21, 0, 10)
         var updatingChatTitleImage:UIImage =  UIImage(named: "1.0wechat_update")!
         updatingChatTitleImage = updatingChatTitleImage.resizableImageWithCapInsets(imageInsets)
         updatingChatTitleButton.setBackgroundImage(updatingChatTitleImage, forState: UIControlState.Normal)
@@ -78,7 +78,7 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UIGestureR
         updatingChatTitleButton.addTarget(self, action: "popBack", forControlEvents: UIControlEvents.TouchUpInside)
         
         //add a UILabel to update text from server every 3 seconds
-        var serverText:UILabel = UILabel(frame: CGRectMake(21, 0, 170, 34))
+        let serverText:UILabel = UILabel(frame: CGRectMake(21, 0, 170, 34))
         serverText.text = "Group Chat"
         serverText.textAlignment = NSTextAlignment.Center
         updatingChatTitleButton.addSubview(serverText)
@@ -154,18 +154,18 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UIGestureR
     }
     
     func setupPostSpaceAndColorPicker() {
-        var navbarHeight = self.navigationController?.navigationBar.bounds.height as CGFloat!
+        let navbarHeight = self.navigationController?.navigationBar.bounds.height as CGFloat!
         heightOfNavBar = CGFloat(navbarHeight+20)
         postView = UIView(frame: CGRectMake(0, 0, CGFloat(utilityInstance.getScreenWidth()), CGFloat(utilityInstance.getScreenHeight())-heightOfNavBar!))
         colorPickerView = ColorPickerControl(frame: CGRectMake(20, postView!.frame.height-120, 100, 100))
         colorPickerView?.allBPaths = [utilityInstance.drawTeal(),utilityInstance.drawYellow(),utilityInstance.drawOrange(),utilityInstance.drawPink(),utilityInstance.drawGray(),utilityInstance.drawPurple(),utilityInstance.drawDarkBlue(), utilityInstance.drawLightBlue()]
-        var randomColorNumber = utilityInstance.rollRandomColor()
+        let randomColorNumber = utilityInstance.rollRandomColor()
         postView!.backgroundColor = pickRandomColor(randomColorNumber)
     }
 
     func setupPostLabel() {
-        var postContentVerticalSpacer:CGFloat = CGFloat(utilityInstance.getScreenWidth()*0.204)
-        var postContentHorizontalSpacer:CGFloat = CGFloat(CGFloat(utilityInstance.getScreenWidth()) - CGFloat(213))*0.5
+        let postContentVerticalSpacer:CGFloat = CGFloat(utilityInstance.getScreenWidth()*0.204)
+        let postContentHorizontalSpacer:CGFloat = CGFloat(CGFloat(utilityInstance.getScreenWidth()) - CGFloat(213))*0.5
         postLabel = PostTextView(frame: CGRectMake(postContentHorizontalSpacer, postContentVerticalSpacer, CGFloat(213), CGFloat(183)))//same height as the cell post content label (check xib)
         postLabel?.delegate = self
         postLabel?.textContainer.lineBreakMode = NSLineBreakMode.ByWordWrapping
@@ -212,14 +212,14 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UIGestureR
     }
     
     func setupGestureRecognizers() {
-        var dismissKeyboard:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "keyboardDismissTap:")
+        let dismissKeyboard:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "keyboardDismissTap:")
         dismissKeyboard.delegate = self
         self.view.addGestureRecognizer(dismissKeyboard)
     }
     
     func addPostToMainArray() {
-        var pContent:String = postLabel!.text!
-        var newPost:Post = Post(ID:utilityInstance.getArrayForDemoPurposes().count+1, numLikes:0, numComments:0, postContent:pContent, liked:false, color: currentColor!, createdTime: "11 hours ago", createdCity: "Toronto")
+        let pContent:String = postLabel!.text!
+        let newPost:Post = Post(ID:utilityInstance.getArrayForDemoPurposes().count+1, numLikes:0, numComments:0, postContent:pContent, liked:false, color: currentColor!, createdTime: "11 hours ago", createdCity: "Toronto")
         utilityInstance.addPostToDemoArray(newPost)
         popBack()
     }
@@ -247,14 +247,14 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UIGestureR
     //MARK: Keyboard methods
     
     func keyboardWillShow(notif:NSNotification) {
-        let keyboardFrame = view.convertRect(notif.userInfo![UIKeyboardFrameEndUserInfoKey]!.CGRectValue(), fromView:nil)
+        let keyboardFrame = view.convertRect(notif.userInfo![UIKeyboardFrameEndUserInfoKey]!.CGRectValue, fromView:nil)
         scrollView!.frame = CGRectMake(0, 0, CGFloat(utilityInstance.getScreenWidth()), CGFloat(utilityInstance.getScreenHeight())-heightOfNavBar!-keyboardFrame.height)
         scrollView?.contentOffset = CGPointMake(0, keyboardFrame.size.height)
         scrollView?.scrollRectToVisible(CGRectMake(0, 0, CGFloat(utilityInstance.getScreenWidth()), 1), animated: false)
     }
     
     func keyboardWillHide(notif: NSNotification) {
-        let keyboardFrame = view.convertRect(notif.userInfo![UIKeyboardFrameEndUserInfoKey]!.CGRectValue(), fromView:nil)
+        let keyboardFrame = view.convertRect(notif.userInfo![UIKeyboardFrameEndUserInfoKey]!.CGRectValue, fromView:nil)
         scrollView!.frame = CGRectMake(0, 0, CGFloat(utilityInstance.getScreenWidth()), CGFloat(utilityInstance.getScreenHeight())-heightOfNavBar!+keyboardFrame.height)
     }
     
@@ -271,10 +271,10 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UIGestureR
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         //handle placeholder text
-            if ((count(textView.text) >= count(utilityInstance.placeHolderTextCreatePost())) && !startEditing && (count(text)>0)) {
+            if ((textView.text.characters.count >= utilityInstance.placeHolderTextCreatePost().characters.count) && !startEditing && (text.characters.count>0)) {
                 applyNonPlaceholderStyle(textView)
                 startEditing = true
-            } else if ((text == "") && startEditing && (count(textView.text) == 1)) {
+            } else if ((text == "") && startEditing && (textView.text.characters.count == 1)) {
                 startEditing = false
                 applyPlaceholderStyle(textView, placeholderString: utilityInstance.placeHolderTextCreatePost())
                 moveCursorToStart(textView)

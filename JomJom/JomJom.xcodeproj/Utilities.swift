@@ -20,16 +20,16 @@ public class Utilities {
     }
 
     func setArrayForDemoPurposes() {
-        var SamplePost1:Post = Post(ID:1, numLikes:2, numComments:9, postContent:"Post Post Post Post Post Post Post Post Post Post", liked:true, color: ColorType.Teal, createdTime: "< 1 hour ago", createdCity: "Toronto")
-        var SamplePost2:Post = Post(ID:2, numLikes:4, numComments:8, postContent:"Post 2", liked:false, color: ColorType.Yellow, createdTime: "17 hours ago", createdCity: "Toronto")
-        var SamplePost3:Post = Post(ID:3, numLikes:1, numComments:4, postContent:"Post 3", liked:false, color: ColorType.Gray, createdTime: "11 hour2 ago", createdCity: "Toronto")
-        var SamplePost4:Post = Post(ID:4, numLikes:2, numComments:7, postContent:"Post 4", liked:true, color: ColorType.LightBlue, createdTime: "< 1 hour ago", createdCity: "Toronto")
-        var SamplePost5:Post = Post(ID:5, numLikes:5, numComments:3, postContent:"Post 5", liked:true, color: ColorType.DarkBlue, createdTime: "2015.05.19", createdCity: "Toronto")
-        var SamplePost6:Post = Post(ID:6, numLikes:74, numComments:0, postContent:"Post 6",liked:false, color: ColorType.Purple, createdTime: "23 hours ago", createdCity: "Toronto")
-        var SamplePost7:Post = Post(ID:7, numLikes:1, numComments:29, postContent:"Post 7", liked:false, color: ColorType.Orange, createdTime: "14 hour ago", createdCity: "Toronto")
-        var SamplePost8:Post = Post(ID:8, numLikes:0, numComments:12, postContent:"Post 8", liked:true, color: ColorType.Pink, createdTime: "2015.04.19", createdCity: "Toronto")
-        var SamplePost9:Post = Post(ID:9, numLikes:25, numComments:34, postContent:"Post 9", liked:false, color: ColorType.Teal, createdTime: "3 hours ago", createdCity: "Toronto")
-        var SamplePost10:Post = Post(ID:10, numLikes:8, numComments:1, postContent:"Post 10", liked:true, color: ColorType.Yellow, createdTime: "8 hours ago", createdCity: "Toronto")
+        let SamplePost1:Post = Post(ID:1, numLikes:2, numComments:9, postContent:"Post Post Post Post Post Post Post Post Post Post", liked:true, color: ColorType.Teal, createdTime: "< 1 hour ago", createdCity: "Toronto")
+        let SamplePost2:Post = Post(ID:2, numLikes:4, numComments:8, postContent:"Post 2", liked:false, color: ColorType.Yellow, createdTime: "17 hours ago", createdCity: "Toronto")
+        let SamplePost3:Post = Post(ID:3, numLikes:1, numComments:4, postContent:"Post 3", liked:false, color: ColorType.Gray, createdTime: "11 hour2 ago", createdCity: "Toronto")
+        let SamplePost4:Post = Post(ID:4, numLikes:2, numComments:7, postContent:"Post 4", liked:true, color: ColorType.LightBlue, createdTime: "< 1 hour ago", createdCity: "Toronto")
+        let SamplePost5:Post = Post(ID:5, numLikes:5, numComments:3, postContent:"Post 5", liked:true, color: ColorType.DarkBlue, createdTime: "2015.05.19", createdCity: "Toronto")
+        let SamplePost6:Post = Post(ID:6, numLikes:74, numComments:0, postContent:"Post 6",liked:false, color: ColorType.Purple, createdTime: "23 hours ago", createdCity: "Toronto")
+        let SamplePost7:Post = Post(ID:7, numLikes:1, numComments:29, postContent:"Post 7", liked:false, color: ColorType.Orange, createdTime: "14 hour ago", createdCity: "Toronto")
+        let SamplePost8:Post = Post(ID:8, numLikes:0, numComments:12, postContent:"Post 8", liked:true, color: ColorType.Pink, createdTime: "2015.04.19", createdCity: "Toronto")
+        let SamplePost9:Post = Post(ID:9, numLikes:25, numComments:34, postContent:"Post 9", liked:false, color: ColorType.Teal, createdTime: "3 hours ago", createdCity: "Toronto")
+        let SamplePost10:Post = Post(ID:10, numLikes:8, numComments:1, postContent:"Post 10", liked:true, color: ColorType.Yellow, createdTime: "8 hours ago", createdCity: "Toronto")
         
         postArrayForDemoPurposes = [SamplePost1, SamplePost2, SamplePost3, SamplePost4, SamplePost5,SamplePost6, SamplePost7, SamplePost8, SamplePost9, SamplePost10]
 

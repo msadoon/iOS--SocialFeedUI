@@ -14,6 +14,7 @@
 		8E7059041B091EAB00E0696B /* CreatePostViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7059031B091EAB00E0696B /* CreatePostViewControllerDelegate.swift */; };
 		8E77CC501B0ACB4F00E12581 /* PostTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E77CC4F1B0ACB4F00E12581 /* PostTextView.swift */; };
 		8E8085531B07DC8D00151543 /* ColorPickerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8085521B07DC8D00151543 /* ColorPickerControl.swift */; };
+		8E8B63EE1B13CA14002CCD9B /* GroupChatLabelLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8B63ED1B13CA14002CCD9B /* GroupChatLabelLine.swift */; };
 		8EA1CC6D1AF8F4F4001CA4AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA1CC6C1AF8F4F4001CA4AE /* AppDelegate.swift */; };
 		8EA1CC6F1AF8F4F4001CA4AE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA1CC6E1AF8F4F4001CA4AE /* LoginViewController.swift */; };
 		8EA1CC741AF8F4F4001CA4AE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EA1CC731AF8F4F4001CA4AE /* Images.xcassets */; };
@@ -24,6 +25,10 @@
 		8EA1CC971AF92F1D001CA4AE /* AllPostsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EA1CC961AF92F1D001CA4AE /* AllPostsViewController.xib */; };
 		8EA7D5711B05216F006A5878 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA7D56F1B05216F006A5878 /* CreatePostViewController.swift */; };
 		8EA7D5741B0527EE006A5878 /* CreatePostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EA7D5731B0527EE006A5878 /* CreatePostViewController.xib */; };
+		8ECB55E31B11052000591E28 /* GroupChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB55E11B11052000591E28 /* GroupChat.swift */; };
+		8ECB55E41B11052000591E28 /* GroupChat.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ECB55E21B11052000591E28 /* GroupChat.xib */; };
+		8ECB55E71B1143CC00591E28 /* ChatBubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB55E51B1143CC00591E28 /* ChatBubbleCell.swift */; };
+		8ECB55E81B1143CC00591E28 /* ChatBubbleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ECB55E61B1143CC00591E28 /* ChatBubbleCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +49,7 @@
 		8E7059031B091EAB00E0696B /* CreatePostViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostViewControllerDelegate.swift; sourceTree = "<group>"; };
 		8E77CC4F1B0ACB4F00E12581 /* PostTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTextView.swift; sourceTree = "<group>"; };
 		8E8085521B07DC8D00151543 /* ColorPickerControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerControl.swift; sourceTree = "<group>"; };
+		8E8B63ED1B13CA14002CCD9B /* GroupChatLabelLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupChatLabelLine.swift; sourceTree = "<group>"; };
 		8EA1CC671AF8F4F4001CA4AE /* JomJom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JomJom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EA1CC6B1AF8F4F4001CA4AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8EA1CC6C1AF8F4F4001CA4AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +64,10 @@
 		8EA1CC961AF92F1D001CA4AE /* AllPostsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllPostsViewController.xib; sourceTree = "<group>"; };
 		8EA7D56F1B05216F006A5878 /* CreatePostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePostViewController.swift; path = ../JomJom/CreatePostViewController.swift; sourceTree = "<group>"; };
 		8EA7D5731B0527EE006A5878 /* CreatePostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreatePostViewController.xib; sourceTree = "<group>"; };
+		8ECB55E11B11052000591E28 /* GroupChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupChat.swift; sourceTree = "<group>"; };
+		8ECB55E21B11052000591E28 /* GroupChat.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupChat.xib; sourceTree = "<group>"; };
+		8ECB55E51B1143CC00591E28 /* ChatBubbleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatBubbleCell.swift; sourceTree = "<group>"; };
+		8ECB55E61B1143CC00591E28 /* ChatBubbleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatBubbleCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +145,7 @@
 		8EA1CC8C1AF907CB001CA4AE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8ECB55E01B11036500591E28 /* GroupChat */,
 				8EA1CC951AF91F02001CA4AE /* Utilities */,
 				8EA1CC8E1AF907EF001CA4AE /* AllPosts */,
 				8EA1CC8D1AF907E5001CA4AE /* Login */,
@@ -187,6 +198,18 @@
 			path = JomJom.xcodeproj;
 			sourceTree = SOURCE_ROOT;
 		};
+		8ECB55E01B11036500591E28 /* GroupChat */ = {
+			isa = PBXGroup;
+			children = (
+				8ECB55E11B11052000591E28 /* GroupChat.swift */,
+				8E8B63ED1B13CA14002CCD9B /* GroupChatLabelLine.swift */,
+				8ECB55E21B11052000591E28 /* GroupChat.xib */,
+				8ECB55E51B1143CC00591E28 /* ChatBubbleCell.swift */,
+				8ECB55E61B1143CC00591E28 /* ChatBubbleCell.xib */,
+			);
+			name = GroupChat;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -231,11 +254,14 @@
 		8EA1CC5F1AF8F4F4001CA4AE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = msadoon;
 				TargetAttributes = {
 					8EA1CC661AF8F4F4001CA4AE = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 224WGVVZC5;
 					};
 					8EA1CC7B1AF8F4F4001CA4AE = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -268,6 +294,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EA1CC741AF8F4F4001CA4AE /* Images.xcassets in Resources */,
+				8ECB55E81B1143CC00591E28 /* ChatBubbleCell.xib in Resources */,
+				8ECB55E41B11052000591E28 /* GroupChat.xib in Resources */,
 				8EA7D5741B0527EE006A5878 /* CreatePostViewController.xib in Resources */,
 				8EA1CC921AF90FC8001CA4AE /* LoginViewController.xib in Resources */,
 				8EA1CC971AF92F1D001CA4AE /* AllPostsViewController.xib in Resources */,
@@ -292,6 +320,9 @@
 				8EA1CC901AF9083B001CA4AE /* AllPostsViewController.swift in Sources */,
 				8E2366841B01756B006AEBC5 /* ColorType.swift in Sources */,
 				8EA1CC6F1AF8F4F4001CA4AE /* LoginViewController.swift in Sources */,
+				8ECB55E71B1143CC00591E28 /* ChatBubbleCell.swift in Sources */,
+				8E8B63EE1B13CA14002CCD9B /* GroupChatLabelLine.swift in Sources */,
+				8ECB55E31B11052000591E28 /* GroupChat.swift in Sources */,
 				8E7059041B091EAB00E0696B /* CreatePostViewControllerDelegate.swift in Sources */,
 				8E23667A1AFEBE2F006AEBC5 /* PostTableViewCell.swift in Sources */,
 				8E8085531B07DC8D00151543 /* ColorPickerControl.swift in Sources */,
@@ -410,9 +441,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = JomJom/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -422,9 +456,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = JomJom/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
